@@ -17,7 +17,7 @@ class DetailViewController: UIViewController {
         // Update the user interface for the detail item.
         if let detail = detailItem {
             if let label = detailDescriptionLabel {
-                label.text = detail.timestamp!.description
+                label.text = detail.id
             }
         }
     }
@@ -28,13 +28,11 @@ class DetailViewController: UIViewController {
         configureView()
     }
 
-    var detailItem: Event? {
+    var detailItem: EC2? {
         didSet {
             // Update the view.
             configureView()
         }
     }
-
-
 }
 
