@@ -59,10 +59,10 @@
             </objects>
             <point key="canvasLocation" x="-856" y="-330"/>
         </scene>
-        <!--View Controller-->
+        <!--Master View Controller-->
         <scene sceneID="xgl-Zm-ALs">
             <objects>
-                <viewController id="chp-HO-gAK" sceneMemberID="viewController">
+                <viewController id="chp-HO-gAK" customClass="MasterViewController" customModule="ios_aws_console" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="If5-s0-T9Q">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="834"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -87,33 +87,57 @@
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxX="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="nI3-ik-Dht">
-                                    <size key="itemSize" width="50" height="50"/>
+                                    <size key="itemSize" width="97" height="50"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="UOP-Qf-Nb4">
-                                        <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="Cell" id="UOP-Qf-Nb4" customClass="InstanceCell" customModule="ios_aws_console" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="0.0" width="97" height="50"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
-                                            <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="97" height="50"/>
                                             <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="TpG-Ba-Umi">
+                                                    <rect key="frame" x="2" y="2" width="93" height="34"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                </view>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="i-1234567890abcdef0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aBd-IR-ULV">
+                                                    <rect key="frame" x="4" y="40" width="90" height="10"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="8"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
                                         </view>
+                                        <size key="customSize" width="97" height="50"/>
+                                        <connections>
+                                            <outlet property="instanceId" destination="aBd-IR-ULV" id="qC4-m2-CKb"/>
+                                            <outlet property="stateView" destination="TpG-Ba-Umi" id="nmn-yI-5ZZ"/>
+                                        </connections>
                                     </collectionViewCell>
                                 </cells>
+                                <connections>
+                                    <outlet property="dataSource" destination="chp-HO-gAK" id="GaT-l6-3Nv"/>
+                                    <outlet property="delegate" destination="chp-HO-gAK" id="tB0-4v-zUi"/>
+                                </connections>
                             </collectionView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="NAp-vT-Rbr"/>
                     </view>
                     <connections>
+                        <outlet property="collectionView" destination="uYF-2K-TIR" id="V6S-cY-Gvf"/>
                         <segue destination="vC3-pB-5Vb" kind="showDetail" identifier="toDetail" id="Mg7-6C-3sx"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="VzR-Ct-yPS" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-97.122302158273385" y="-735.25179856115108"/>
+            <point key="canvasLocation" x="-45.323741007194243" y="-723.02158273381303"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="r7l-gg-dq7">
