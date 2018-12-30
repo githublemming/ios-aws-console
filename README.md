@@ -1,2 +1,4 @@
 # ios-aws-console
-just an idea. It might not come to much
+This is only an idea, it might not come to much, but I thought I'd give it a go.
+
+** There is currently nothing worth cloning**
