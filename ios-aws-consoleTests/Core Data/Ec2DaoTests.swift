@@ -15,7 +15,7 @@ class Ec2Dao: CoreDataBaseTest {
 
     override func setUp() {
         // Put setup code here. This method is called before the invocation of each test method in the class.
-        ec2Dao = Ec2Dao(persistentTestContainer)
+//        ec2Dao = Ec2Dao(persistentTestContainer)
     }
 
     override func tearDown() {

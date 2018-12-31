@@ -42,7 +42,7 @@ class Ec2Service: BaseService, AwsService {
             ec2Dao.getInstanceByInstanceId(instanceId: instanceId)
 
             let ec2 = EC2()
-            ec2.id = instanceId
+            ec2.instanceId = instanceId
             ec2.region = String(availabilitZone.dropLast())
             ec2.xml = instance.text!
         }

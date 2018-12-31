@@ -41,8 +41,7 @@ extension DetailViewController: UITableViewDataSource {
 
         if ec2 != nil {
             return ec2!.instanceDetail.count
-        }
-        else {
+        } else {
             return 0
         }
     }

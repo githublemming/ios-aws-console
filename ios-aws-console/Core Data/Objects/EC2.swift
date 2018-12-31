@@ -15,7 +15,7 @@ class EC2: NSManagedObject {
         return NSFetchRequest<EC2>(entityName: "EC2")
     }
 
-    @NSManaged public var id: String
+    @NSManaged public var instanceId: String
     @NSManaged public var region: String
     @NSManaged public var xml: String
 
@@ -45,11 +45,11 @@ class EC2: NSManagedObject {
         instanceDetail = [(name: String, value: String)]()
     }
 
-    func instanceId() -> String {
+    func getInstanceId() -> String {
         return instanceDetail[0].value
     }
 
-    func instanceState() -> String {
+    func getInstanceState() -> String {
         return instanceDetail[2].value
     }
 }

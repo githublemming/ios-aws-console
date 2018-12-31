@@ -16,14 +16,14 @@ class Ec2ServiceTests: XCTestCase {
     let ec2Service = Ec2Service()
 
     func testDescribeInstances() {
-        ec2Service.describeInstances(region: "eu-west-1", completion: describeInstancesResponse)
+//        ec2Service.describeInstances(region: "eu-west-1", completion: describeInstancesResponse)
     }
     func describeInstancesResponse(instances: XML.Accessor) {
 
     }
 
     func testDescribeRegions() {
-        ec2Service.describeInstances(completion: describeRegionsResponse)
+//        ec2Service.describeInstances(completion: describeRegionsResponse)
     }
     func describeRegionsResponse(regions: XML.Accessor) {
 

@@ -8,7 +8,7 @@
 
 import UIKit
 
-class RegionPickerView: UIPickerView  {
+class RegionPickerView: UIPickerView {
 
     let regionDao = RegionDao()
     let ec2Service = Ec2Service()
@@ -34,7 +34,10 @@ class RegionPickerView: UIPickerView  {
     func viewDidLoad() {
         regions.sort()
 
-        NotificationCenter.default.addObserver(self, selector: #selector(regionsUpdated), name: .regionsUpdated, object: nil)
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(regionsUpdated),
+                                               name: .regionsUpdated,
+                                               object: nil)
         ec2Service.describeRegions()
     }
 
