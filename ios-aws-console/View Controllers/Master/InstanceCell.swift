@@ -19,9 +19,9 @@ class InstanceCell: UICollectionViewCell {
 
         ec2.inflateMinimum()
 
-        instanceId.text = ec2.instanceId()
+        instanceId.text = ec2.getInstanceId()
 
-        switch ec2.instanceState()  {
+        switch ec2.getInstanceState() {
         case "pending", "shutting-down", "stopping":
             stateView.backgroundColor = UIColor.yellow
         case "running":

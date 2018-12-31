@@ -9,12 +9,11 @@
 import UIKit
 import CoreData
 
-class MasterViewController: UIViewController{
+class MasterViewController: UIViewController {
 
     @IBOutlet weak var collectionView: UICollectionView!
-
     @IBOutlet weak var regionPicker: RegionPickerView!
-    
+
     let ec2Dao = Ec2Dao()
     let regionDao = RegionDao()
 
@@ -50,7 +49,11 @@ class MasterViewController: UIViewController{
     func changeRegion() {
 
         UIView.animate(withDuration: 0.3, animations: {
-            self.regionPicker.frame = CGRect(x: 0, y: self.view.bounds.size.height - self.regionPicker.bounds.size.height, width: self.regionPicker.bounds.size.width, height: self.regionPicker.bounds.size.height)
+            self.regionPicker.frame = CGRect(
+                x: 0,
+                y: self.view.bounds.size.height - self.regionPicker.bounds.size.height,
+                width: self.regionPicker.bounds.size.width,
+                height: self.regionPicker.bounds.size.height)
         })
 
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(doneWithPickerView))
@@ -66,7 +69,11 @@ class MasterViewController: UIViewController{
     @objc func doneWithPickerView() {
 
         UIView.animate(withDuration: 0.3, animations: {
-            self.regionPicker.frame = CGRect(x: 0, y: self.view.bounds.size.height, width: self.regionPicker.bounds.size.width, height: self.regionPicker.bounds.size.height)
+            self.regionPicker.frame = CGRect(
+                x: 0,
+                y: self.view.bounds.size.height,
+                width: self.regionPicker.bounds.size.width,
+                height: self.regionPicker.bounds.size.height)
         })
 
         refreshInstances()
@@ -96,7 +103,8 @@ extension MasterViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView,
                         cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
 
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as! InstanceCell
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier,
+                                                      for: indexPath) as! InstanceCell
         cell.ec2 = instances[indexPath.row]
         cell.configure()
         return cell

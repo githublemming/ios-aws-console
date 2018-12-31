@@ -204,12 +204,12 @@
 			path = Assets;
 			sourceTree = "<group>";
 		};
-		08C83A9C21D7E9BA00253D99 /* 3rd Party */ = {
+		08C83A9C21D7E9BA00253D99 /* 3rdParty */ = {
 			isa = PBXGroup;
 			children = (
 				08C83A9D21D7E9C600253D99 /* Swawsh */,
 			);
-			path = "3rd Party";
+			path = 3rdParty;
 			sourceTree = "<group>";
 		};
 		08C83A9D21D7E9C600253D99 /* Swawsh */ = {
@@ -264,7 +264,7 @@
 		08D90C6321D630C30066CADB /* ios-aws-console */ = {
 			isa = PBXGroup;
 			children = (
-				08C83A9C21D7E9BA00253D99 /* 3rd Party */,
+				08C83A9C21D7E9BA00253D99 /* 3rdParty */,
 				084421AB21D6414100EE25A4 /* Assets */,
 				08F1E26821D933CE00A9EB42 /* AWS */,
 				084421AA21D6413500EE25A4 /* Core Data */,
