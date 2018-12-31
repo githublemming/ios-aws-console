@@ -82,6 +82,10 @@
                                     <accessibilityTraits key="traits" notEnabled="YES" header="YES"/>
                                 </accessibility>
                             </view>
+                            <pickerView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="mwW-aG-tng" customClass="RegionPickerView" customModule="ios_aws_console" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="309" width="320" height="216"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                            </pickerView>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="uYF-2K-TIR">
                                 <rect key="frame" x="16" y="90" width="288" height="681"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxX="YES" heightSizable="YES" flexibleMaxY="YES"/>
@@ -93,7 +97,7 @@
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="Cell" id="UOP-Qf-Nb4" customClass="InstanceCell" customModule="ios_aws_console" customModuleProvider="target">
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" misplaced="YES" reuseIdentifier="Cell" id="UOP-Qf-Nb4" customClass="InstanceCell" customModule="ios_aws_console" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="97" height="50"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
@@ -132,6 +136,7 @@
                     </view>
                     <connections>
                         <outlet property="collectionView" destination="uYF-2K-TIR" id="V6S-cY-Gvf"/>
+                        <outlet property="regionPicker" destination="mwW-aG-tng" id="Sxb-7Z-1P5"/>
                         <segue destination="vC3-pB-5Vb" kind="showDetail" identifier="toDetail" id="Mg7-6C-3sx"/>
                     </connections>
                 </viewController>

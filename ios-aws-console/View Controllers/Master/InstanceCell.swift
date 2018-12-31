@@ -7,33 +7,31 @@
 //
 
 import UIKit
-import SwiftyXMLParser
 
 class InstanceCell: UICollectionViewCell {
 
-    var ec2 : EC2!
+    var ec2: EC2!
 
     @IBOutlet weak var stateView: UIView!
     @IBOutlet weak var instanceId: UILabel!
     
     func configure() {
 
-        if let xml = ec2.xml {
-            let instanceData = try! XML.parse(xml)
+        ec2.inflateMinimum()
 
-            instanceId.text = instanceData["item", "instanceId"].text
+        instanceId.text = ec2.instanceId()
 
-            let code = instanceData["item", "instanceState", "code"].text
-            switch(code) {
-            case "0", "32":
-                stateView.backgroundColor = UIColor.yellow
-            case "16":
-                stateView.backgroundColor = UIColor.green
-            case "48", "64", "80":
-                stateView.backgroundColor = UIColor.red
-            default:
-                stateView.backgroundColor = UIColor.gray
-            }
+        switch(ec2.instanceState()) {
+        case "pending", "shutting-down", "stopping":
+            stateView.backgroundColor = UIColor.yellow
+        case "running":
+            stateView.backgroundColor = UIColor.green
+        case "terminated", "stopped":
+            stateView.backgroundColor = UIColor.red
+        default:
+            stateView.backgroundColor = UIColor.gray
         }
+
+        ec2.deflate()
     }
 }

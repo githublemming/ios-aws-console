@@ -12,35 +12,40 @@ import SwiftyXMLParser
 class BaseService {
 
     let swawsh = SwawshCredential.sharedInstance
+    let profileDao = ProfileDao()
 
     func sendRequest(awsService: AwsService, region: String, queryParams: String, completion: @escaping (XML.Accessor) -> Void) {
 
-        let swawsh = SwawshCredential.sharedInstance
-        let authorization = swawsh.generateCredential(
-            method: .GET,
-            path: "/",
-            endPoint: awsService.endpoint(),
-            queryParameters: "Action=\(queryParams)&Version=2013-10-15",
-            payloadDigest: SwawshCredential.emptyStringHash,
-            region: region,
-            service: awsService.service(),
-            accessKeyId: "access_key_id",
-            secretKey: "secret_key"
-        )
+        if let activeProfile = profileDao.getActiveProfile() {
 
-        let headers: HTTPHeaders = [
-            "Authorization": authorization!,
-            "x-amz-date": swawsh.getDate(),
-            "x-amz-content-sha256": SwawshCredential.emptyStringHash,
-            "Host": awsService.endpoint()
-        ]
+            let swawsh = SwawshCredential.sharedInstance
+            let authorization = swawsh.generateCredential(
+                method: .GET,
+                path: "/",
+                endPoint: awsService.endpoint(),
+                queryParameters: "Action=\(queryParams)&Version=2013-10-15",
+                payloadDigest: SwawshCredential.emptyStringHash,
+                region: region,
+                service: awsService.service(),
+                accessKeyId: activeProfile.access_id!,
+                secretKey: activeProfile.secret!
+            )
 
-        let url = "https://\(awsService.endpointWithRegion(region:region))?Action=\(queryParams)&Version=2013-10-15"
-        Alamofire.request(url, headers: headers).responseData { response in
+            let headers: HTTPHeaders = [
+                "Authorization": authorization!,
+                "x-amz-date": swawsh.getDate(),
+                "x-amz-content-sha256": SwawshCredential.emptyStringHash,
+                "Host": awsService.endpoint()
+            ]
 
-            if let data = response.data {
-                completion(XML.parse(data))
+            let url = "https://\(awsService.endpointWithRegion(region:region))?Action=\(queryParams)&Version=2013-10-15"
+            Alamofire.request(url, headers: headers).responseData { response in
+
+                if let data = response.data {
+                    completion(XML.parse(data))
+                }
             }
+
         }
     }
 }

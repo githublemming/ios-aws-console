@@ -2,17 +2,20 @@
 //  ios_aws_consoleTests.swift
 //  ios-aws-consoleTests
 //
-//  Created by Mark Haskins on 28/12/2018.
+//  Created by Mark Haskins on 31/12/2018.
 //  Copyright © 2018 Mark Haskins. All rights reserved.
 //
 
 import XCTest
 @testable import ios_aws_console
 
-class ios_aws_consoleTests: XCTestCase {
+class Ec2Dao: CoreDataBaseTest {
+
+    var ec2Dao: Ec2Dao?
 
     override func setUp() {
         // Put setup code here. This method is called before the invocation of each test method in the class.
+        ec2Dao = Ec2Dao(persistentTestContainer)
     }
 
     override func tearDown() {

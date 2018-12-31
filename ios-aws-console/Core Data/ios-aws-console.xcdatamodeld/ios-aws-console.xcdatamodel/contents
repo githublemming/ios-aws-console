@@ -1,17 +1,21 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="14460.32" systemVersion="18C54" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
-    <entity name="Account" representedClassName="Account" syncable="YES" codeGenerationType="class">
-        <attribute name="access_id" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="profile" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="secret" optional="YES" attributeType="String" syncable="YES"/>
+    <entity name="EC2" representedClassName="EC2" syncable="YES">
+        <attribute name="id" attributeType="String" syncable="YES"/>
+        <attribute name="region" attributeType="String" syncable="YES"/>
+        <attribute name="xml" attributeType="String" syncable="YES"/>
     </entity>
-    <entity name="EC2" representedClassName="EC2" syncable="YES" codeGenerationType="class">
-        <attribute name="id" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="region" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="xml" optional="YES" attributeType="String" syncable="YES"/>
+    <entity name="Profile" representedClassName="Profile" syncable="YES" codeGenerationType="class">
+        <attribute name="access_id" attributeType="String" syncable="YES"/>
+        <attribute name="profile" attributeType="String" syncable="YES"/>
+        <attribute name="secret" attributeType="String" syncable="YES"/>
+    </entity>
+    <entity name="Region" representedClassName="Region" syncable="YES" codeGenerationType="class">
+        <attribute name="name" attributeType="String" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Account" positionX="-63" positionY="0" width="128" height="90"/>
         <element name="EC2" positionX="-63" positionY="-18" width="128" height="90"/>
+        <element name="Profile" positionX="-63" positionY="0" width="128" height="90"/>
+        <element name="Region" positionX="-63" positionY="18" width="128" height="60"/>
     </elements>
 </model>
