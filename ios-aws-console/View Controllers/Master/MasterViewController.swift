@@ -31,7 +31,10 @@ class MasterViewController: UIViewController{
 
         // if we have a default region overwrite the variable
 
-        NotificationCenter.default.addObserver(self, selector: #selector(refreshInstances), name: .instancesUpdated, object: nil)
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(refreshInstances),
+                                               name: .instancesUpdated,
+                                               object: nil)
 //        refreshInstances()
 
         self.regionPicker.isHidden = true
@@ -45,7 +48,7 @@ class MasterViewController: UIViewController{
 
     // @IBAction
     func changeRegion() {
-        
+
         UIView.animate(withDuration: 0.3, animations: {
             self.regionPicker.frame = CGRect(x: 0, y: self.view.bounds.size.height - self.regionPicker.bounds.size.height, width: self.regionPicker.bounds.size.width, height: self.regionPicker.bounds.size.height)
         })
@@ -66,7 +69,7 @@ class MasterViewController: UIViewController{
             self.regionPicker.frame = CGRect(x: 0, y: self.view.bounds.size.height, width: self.regionPicker.bounds.size.width, height: self.regionPicker.bounds.size.height)
         })
 
-        refreshInstances();
+        refreshInstances()
     }
 
     @objc func refreshInstances() {
@@ -80,7 +83,7 @@ class MasterViewController: UIViewController{
     }
 }
 
-extension MasterViewController : UICollectionViewDataSource {
+extension MasterViewController: UICollectionViewDataSource {
 
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 1
@@ -90,7 +93,8 @@ extension MasterViewController : UICollectionViewDataSource {
         return instances.count
     }
 
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+    func collectionView(_ collectionView: UICollectionView,
+                        cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
 
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as! InstanceCell
         cell.ec2 = instances[indexPath.row]
@@ -99,7 +103,7 @@ extension MasterViewController : UICollectionViewDataSource {
     }
 }
 
-extension MasterViewController : UICollectionViewDelegate {
+extension MasterViewController: UICollectionViewDelegate {
 
     func collectionView(_ collectionView: UICollectionView, shouldSelectItemAt indexPath: IndexPath) -> Bool {
         print("Something tapped")
@@ -107,10 +111,10 @@ extension MasterViewController : UICollectionViewDelegate {
     }
 }
 
-extension MasterViewController : UIPickerViewDelegate {
+extension MasterViewController: UIPickerViewDelegate {
 
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        
+
         let regionPickerView = pickerView as! RegionPickerView
         region = regionPickerView.selectedRegion(row: row)
         regionDao.setDefaultRegion(region: region)

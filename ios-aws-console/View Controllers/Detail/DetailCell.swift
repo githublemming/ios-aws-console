@@ -6,12 +6,10 @@
 //  Copyright © 2018 Mark Haskins. All rights reserved.
 //
 
+import UIKit
+
 class DetailCell: UITableViewCell {
 
-    // IBOutlet
-    weak var nameLabel: UILabel
-
-    // IBOutlet
-    weak var valueLabel: UILabel
-
+    @IBOutlet weak var nameLabel: UILabel!
+    @IBOutlet weak var valueLabel: UILabel!
 }

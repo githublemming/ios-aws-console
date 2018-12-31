@@ -8,10 +8,9 @@
 
 import UIKit
 
-class DetailViewController: UITableController {
+class DetailViewController: UIViewController {
 
-    // IBOutlet
-    weak var tableView = UITableView
+    @IBOutlet var tableView: UITableView!
 
     var ec2: EC2?
 
@@ -22,49 +21,50 @@ class DetailViewController: UITableController {
     var detailItem: EC2? {
         didSet {
             if ec2 != nil {
-                ec2.deflate()
+                ec2!.deflate()
             }
 
             ec2 = detailItem
-            ec2.inflate()
+            ec2!.inflate()
             tableView.reloadData()
         }
     }
 }
 
-extension DetailViewController : UITableViewDataSource {
+extension DetailViewController: UITableViewDataSource {
 
-    override func numberOfSections(in tableView: UITableView) -> Int
+    func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
 
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
 
         if ec2 != nil {
-            ec2.instanceDetail.count
+            return ec2!.instanceDetail.count
         }
         else {
             return 0
         }
     }
 
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> DetailCell {
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 
-        let cell = tableView.dequeueReusableCell(withIdentifier: "LabelCell", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "DetailCell", for: indexPath) as! DetailCell
 
-        let detail = ec2.instanceDetail(indexPath.row)
-        cell.nameLabel?.text = detail.name
-        cell.valueLabel?.text = detail.value
+//        let detail = ec2!.instanceDetail(indexPath.row)
+//        cell.nameLabel?.text = detail.name
+//        cell.valueLabel?.text = detail.value
 
         return cell
     }
 }
 
-extension DetailViewController : UITableViewDelegate {
+extension DetailViewController: UITableViewDelegate {
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
 
-        let cell = tableView.dequeueReusableCell(withIdentifier: "LabelCell", for: indexPath) as DetailCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "DetailCell", for: indexPath) as! DetailCell
+
         if cell.nameLabel.text == "Status" {
 
             let optionMenu = UIAlertController(title: nil, message: "Instance State", preferredStyle: .actionSheet)
