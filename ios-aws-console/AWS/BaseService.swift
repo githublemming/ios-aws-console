@@ -14,7 +14,10 @@ class BaseService {
     let swawsh = SwawshCredential.sharedInstance
     let profileDao = ProfileDao()
 
-    func sendRequest(awsService: AwsService, region: String, queryParams: String, completion: @escaping (XML.Accessor) -> Void) {
+    func sendRequest(awsService: AwsService,
+                     region: String,
+                     queryParams: String,
+                     completion: @escaping (XML.Accessor) -> Void) {
 
         if let activeProfile = profileDao.getActiveProfile() {
 
@@ -38,14 +41,13 @@ class BaseService {
                 "Host": awsService.endpoint()
             ]
 
-            let url = "https://\(awsService.endpointWithRegion(region:region))?Action=\(queryParams)&Version=2013-10-15"
+            let url = "https://\(awsService.endpointWithRegion(region: region))?Action=\(queryParams)&Version=2013-10-15"
             Alamofire.request(url, headers: headers).responseData { response in
 
                 if let data = response.data {
                     completion(XML.parse(data))
                 }
             }
-
         }
     }
 }

@@ -26,13 +26,16 @@ class Ec2Service: BaseService, AwsService {
     }
 
     func describeInstances(region: String) {
-        sendRequest(awsService: self, region:region, queryParams: "DescribeInstances", completion: describeInstancesCompletionHandler)
+        sendRequest(awsService: self,
+                    region: region,
+                    queryParams: "DescribeInstances",
+                    completion: describeInstancesCompletionHandler)
     }
     func describeInstancesCompletionHandler(instances: XML.Accessor) {
 
         for instance in instances["DescribeInstancesResponse", "reservationSet", "item", "instancesSet", "item"] {
 
-            let az = instance["placement", "availabilityZone"].text!
+            let availabilitZone = instance["placement", "availabilityZone"].text!
             let instanceId = instance["instanceId"].text!
 
             // if instance id already exists get existing model and overwrite, else create a new one
@@ -40,7 +43,7 @@ class Ec2Service: BaseService, AwsService {
 
             let ec2 = EC2()
             ec2.id = instanceId
-            ec2.region = String(az.dropLast())
+            ec2.region = String(availabilitZone.dropLast())
             ec2.xml = instance.text!
         }
 
@@ -50,7 +53,10 @@ class Ec2Service: BaseService, AwsService {
     }
 
     func describeRegions() {
-        sendRequest(awsService: self, region:"eu-west-1", queryParams: "DescribeRegions", completion: describeRegionsCompletionHandler)
+        sendRequest(awsService: self,
+                    region: "eu-west-1",
+                    queryParams: "DescribeRegions",
+                    completion: describeRegionsCompletionHandler)
     }
     func describeRegionsCompletionHandler(regions: XML.Accessor) {
 

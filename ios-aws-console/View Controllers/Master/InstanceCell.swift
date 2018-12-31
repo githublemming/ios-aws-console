@@ -14,14 +14,14 @@ class InstanceCell: UICollectionViewCell {
 
     @IBOutlet weak var stateView: UIView!
     @IBOutlet weak var instanceId: UILabel!
-    
+
     func configure() {
 
         ec2.inflateMinimum()
 
         instanceId.text = ec2.instanceId()
 
-        switch(ec2.instanceState()) {
+        switch ec2.instanceState()  {
         case "pending", "shutting-down", "stopping":
             stateView.backgroundColor = UIColor.yellow
         case "running":

@@ -28,7 +28,6 @@
 		08D90C6F21D630C30066CADB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 08D90C6D21D630C30066CADB /* Main.storyboard */; };
 		08D90C7121D630C50066CADB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 08D90C7021D630C50066CADB /* Assets.xcassets */; };
 		08D90C7421D630C50066CADB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 08D90C7221D630C50066CADB /* LaunchScreen.storyboard */; };
-		08D90C7F21D630C50066CADB /* ios_aws_consoleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08D90C7E21D630C50066CADB /* ios_aws_consoleTests.swift */; };
 		08E7AD8521DAC05A00B369DD /* DetailCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08E7AD8421DAC05A00B369DD /* DetailCell.swift */; };
 		08E7AD8721DAC0D300B369DD /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08E7AD8621DAC0D300B369DD /* DetailViewController.swift */; };
 		08F1E26521D9319A00A9EB42 /* BaseDao.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08F1E26421D9319A00A9EB42 /* BaseDao.swift */; };
@@ -74,7 +73,6 @@
 		08D90C7321D630C50066CADB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		08D90C7521D630C50066CADB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		08D90C7A21D630C50066CADB /* ios-aws-consoleTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "ios-aws-consoleTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		08D90C7E21D630C50066CADB /* ios_aws_consoleTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ios_aws_consoleTests.swift; sourceTree = "<group>"; };
 		08D90C8021D630C50066CADB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		08E7AD8421DAC05A00B369DD /* DetailCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailCell.swift; sourceTree = "<group>"; };
 		08E7AD8621DAC0D300B369DD /* DetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
@@ -285,7 +283,6 @@
 			children = (
 				081C4F0A21DA8BFB00EAFBAD /* AWS */,
 				081C4F0C21DA8BFB00EAFBAD /* Core Data */,
-				08D90C7E21D630C50066CADB /* ios_aws_consoleTests.swift */,
 				08D90C8021D630C50066CADB /* Info.plist */,
 			);
 			path = "ios-aws-consoleTests";
@@ -494,7 +491,6 @@
 			files = (
 				081C4F1021DA8BFB00EAFBAD /* Ec2DaoTests.swift in Sources */,
 				081C4F0F21DA8BFB00EAFBAD /* Ec2ServiceTests.swift in Sources */,
-				08D90C7F21D630C50066CADB /* ios_aws_consoleTests.swift in Sources */,
 				081C4F1121DA8BFB00EAFBAD /* CoreDataBaseTest.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
