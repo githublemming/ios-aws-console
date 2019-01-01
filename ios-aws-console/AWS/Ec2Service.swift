@@ -60,17 +60,5 @@ class Ec2Service: BaseService, AwsService {
     }
     func describeRegionsCompletionHandler(regions: XML.Accessor) {
 
-        for region in regions["DescribeRegionsResponse ", "regionInfo", "item"] {
-
-            let regionName = region["regionName"].text!
-            if !regionDao.regionExists(region: regionName) {
-                let region = Region()
-                region.name = regionName
-            }
-        }
-
-        // save
-
-        NotificationCenter.default.post(name: .regionsUpdated, object: self, userInfo: nil)
     }
 }
