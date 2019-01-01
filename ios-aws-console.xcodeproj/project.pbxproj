@@ -15,6 +15,10 @@
 		081C4F1B21DA8D5500EAFBAD /* EC2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 081C4F1A21DA8D5500EAFBAD /* EC2.swift */; };
 		0827B8F521D825CF00AF18F4 /* InstanceCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0827B8F421D825CF00AF18F4 /* InstanceCell.swift */; };
 		084421B321D6433300EE25A4 /* ios-aws-console.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 084421B121D6433300EE25A4 /* ios-aws-console.xcdatamodeld */; };
+		08B77BDE21DBBB09000B9446 /* SettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08B77BDD21DBBB09000B9446 /* SettingsTableViewController.swift */; };
+		08B77BE021DBBE0D000B9446 /* SettingsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08B77BDF21DBBE0D000B9446 /* SettingsCell.swift */; };
+		08B77BE221DBC522000B9446 /* EditCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08B77BE121DBC522000B9446 /* EditCell.swift */; };
+		08B77BE421DBCB64000B9446 /* ButtonCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08B77BE321DBCB64000B9446 /* ButtonCell.swift */; };
 		08C83AA421D7EA7800253D99 /* SwawshStringToSign.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08C83A9E21D7EA7800253D99 /* SwawshStringToSign.swift */; };
 		08C83AA521D7EA7800253D99 /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = 08C83A9F21D7EA7800253D99 /* LICENSE */; };
 		08C83AA621D7EA7800253D99 /* DateService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08C83AA021D7EA7800253D99 /* DateService.swift */; };
@@ -22,7 +26,6 @@
 		08C83AA821D7EA7800253D99 /* SwawshHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08C83AA221D7EA7800253D99 /* SwawshHeader.swift */; };
 		08C83AA921D7EA7800253D99 /* SwashCredential.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08C83AA321D7EA7800253D99 /* SwashCredential.swift */; };
 		08D8DCF621DABCE300B8114B /* NotificationNames.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08D8DCF521DABCE300B8114B /* NotificationNames.swift */; };
-		08D8DCF821DABCEE00B8114B /* RegionPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08D8DCF721DABCEE00B8114B /* RegionPickerView.swift */; };
 		08D90C6521D630C30066CADB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08D90C6421D630C30066CADB /* AppDelegate.swift */; };
 		08D90C6A21D630C30066CADB /* MasterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08D90C6921D630C30066CADB /* MasterViewController.swift */; };
 		08D90C6F21D630C30066CADB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 08D90C6D21D630C30066CADB /* Main.storyboard */; };
@@ -58,6 +61,10 @@
 		081C4F1A21DA8D5500EAFBAD /* EC2.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EC2.swift; sourceTree = "<group>"; };
 		0827B8F421D825CF00AF18F4 /* InstanceCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstanceCell.swift; sourceTree = "<group>"; };
 		084421B221D6433300EE25A4 /* ios-aws-console.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "ios-aws-console.xcdatamodel"; sourceTree = "<group>"; };
+		08B77BDD21DBBB09000B9446 /* SettingsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsTableViewController.swift; sourceTree = "<group>"; };
+		08B77BDF21DBBE0D000B9446 /* SettingsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsCell.swift; sourceTree = "<group>"; };
+		08B77BE121DBC522000B9446 /* EditCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditCell.swift; sourceTree = "<group>"; };
+		08B77BE321DBCB64000B9446 /* ButtonCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonCell.swift; sourceTree = "<group>"; };
 		08C83A9E21D7EA7800253D99 /* SwawshStringToSign.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwawshStringToSign.swift; sourceTree = "<group>"; };
 		08C83A9F21D7EA7800253D99 /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 		08C83AA021D7EA7800253D99 /* DateService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateService.swift; sourceTree = "<group>"; };
@@ -65,7 +72,6 @@
 		08C83AA221D7EA7800253D99 /* SwawshHeader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwawshHeader.swift; sourceTree = "<group>"; };
 		08C83AA321D7EA7800253D99 /* SwashCredential.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwashCredential.swift; sourceTree = "<group>"; };
 		08D8DCF521DABCE300B8114B /* NotificationNames.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationNames.swift; sourceTree = "<group>"; };
-		08D8DCF721DABCEE00B8114B /* RegionPickerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegionPickerView.swift; sourceTree = "<group>"; };
 		08D90C6121D630C30066CADB /* ios-aws-console.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "ios-aws-console.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		08D90C6421D630C30066CADB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		08D90C6921D630C30066CADB /* MasterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MasterViewController.swift; sourceTree = "<group>"; };
@@ -173,6 +179,7 @@
 		084421A821D6410500EE25A4 /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				08B77BDC21DBBAF3000B9446 /* Settings */,
 				081C4F1E21DA8D9B00EAFBAD /* Detail */,
 				0827B8EF21D81AE200AF18F4 /* Master */,
 			);
@@ -206,6 +213,17 @@
 			path = Assets;
 			sourceTree = "<group>";
 		};
+		08B77BDC21DBBAF3000B9446 /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				08B77BDD21DBBB09000B9446 /* SettingsTableViewController.swift */,
+				08B77BDF21DBBE0D000B9446 /* SettingsCell.swift */,
+				08B77BE121DBC522000B9446 /* EditCell.swift */,
+				08B77BE321DBCB64000B9446 /* ButtonCell.swift */,
+			);
+			path = Settings;
+			sourceTree = "<group>";
+		};
 		08C83A9C21D7E9BA00253D99 /* 3rdParty */ = {
 			isa = PBXGroup;
 			children = (
@@ -226,14 +244,6 @@
 				08C83A9E21D7EA7800253D99 /* SwawshStringToSign.swift */,
 			);
 			path = Swawsh;
-			sourceTree = "<group>";
-		};
-		08D8DCF321DABCA700B8114B /* Views */ = {
-			isa = PBXGroup;
-			children = (
-				08D8DCF721DABCEE00B8114B /* RegionPickerView.swift */,
-			);
-			path = Views;
 			sourceTree = "<group>";
 		};
 		08D8DCF421DABCB200B8114B /* Utils */ = {
@@ -273,7 +283,6 @@
 				084421AA21D6413500EE25A4 /* Core Data */,
 				084421A921D6411600EE25A4 /* Storyboards */,
 				08D8DCF421DABCB200B8114B /* Utils */,
-				08D8DCF321DABCA700B8114B /* Views */,
 				084421A821D6410500EE25A4 /* View Controllers */,
 				08D90C6421D630C30066CADB /* AppDelegate.swift */,
 				08D90C7521D630C50066CADB /* Info.plist */,
@@ -473,6 +482,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				08B77BE221DBC522000B9446 /* EditCell.swift in Sources */,
 				0827B8F521D825CF00AF18F4 /* InstanceCell.swift in Sources */,
 				08F1E26721D9327900A9EB42 /* Ec2Dao.swift in Sources */,
 				08D90C6521D630C30066CADB /* AppDelegate.swift in Sources */,
@@ -483,6 +493,7 @@
 				08F1E26C21D934D300A9EB42 /* BaseService.swift in Sources */,
 				08F1E26521D9319A00A9EB42 /* BaseDao.swift in Sources */,
 				08F1E26E21D9371000A9EB42 /* AwsService.swift in Sources */,
+				08B77BE021DBBE0D000B9446 /* SettingsCell.swift in Sources */,
 				084421B321D6433300EE25A4 /* ios-aws-console.xcdatamodeld in Sources */,
 				08D8DCF621DABCE300B8114B /* NotificationNames.swift in Sources */,
 				081C4F1821DA8D3400EAFBAD /* ProfileDao.swift in Sources */,
@@ -493,7 +504,8 @@
 				08C83AA621D7EA7800253D99 /* DateService.swift in Sources */,
 				08F1E26A21D933E500A9EB42 /* Ec2Service.swift in Sources */,
 				08D90C6A21D630C30066CADB /* MasterViewController.swift in Sources */,
-				08D8DCF821DABCEE00B8114B /* RegionPickerView.swift in Sources */,
+				08B77BDE21DBBB09000B9446 /* SettingsTableViewController.swift in Sources */,
+				08B77BE421DBCB64000B9446 /* ButtonCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

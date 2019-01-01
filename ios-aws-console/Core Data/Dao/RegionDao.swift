@@ -19,15 +19,32 @@ class RegionDao: BaseDao {
         return regions
     }
 
-    func regionExists(region: String) -> Bool {
-        return false
+    func getRegionByName(name: String) -> Region? {
+
+        let regionRequest = NSFetchRequest<Region>(entityName: "Region")
+        regionRequest.predicate = NSPredicate(format: "name == %i", true)
+
+        let result = try? persistentContainer.viewContext.fetch(regionRequest) as [Region]
+        return result?[0]
     }
 
-    func getDefaultRegion() -> Region? {
-        return nil
+    func getActiveRegion() -> Region? {
+        
+        let regionRequest = NSFetchRequest<Region>(entityName: "Region")
+        regionRequest.predicate = NSPredicate(format: "active == %i", true)
+
+        let result = try? persistentContainer.viewContext.fetch(regionRequest) as [Region]
+        return result?[0]
     }
 
-    func setDefaultRegion(region: String) {
+    func setActiveRegion(region: Region) {
 
+        if let activeRegion = getActiveRegion() {
+            activeRegion.active = false
+        }
+
+        region.active = true
+
+        save()
     }
 }
