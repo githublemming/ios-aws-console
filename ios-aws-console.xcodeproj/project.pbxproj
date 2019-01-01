@@ -28,6 +28,7 @@
 		08D90C6F21D630C30066CADB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 08D90C6D21D630C30066CADB /* Main.storyboard */; };
 		08D90C7121D630C50066CADB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 08D90C7021D630C50066CADB /* Assets.xcassets */; };
 		08D90C7421D630C50066CADB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 08D90C7221D630C50066CADB /* LaunchScreen.storyboard */; };
+		08DB03F521DB72D200A4091A /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 08DB03F421DB72D200A4091A /* README.md */; };
 		08E7AD8521DAC05A00B369DD /* DetailCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08E7AD8421DAC05A00B369DD /* DetailCell.swift */; };
 		08E7AD8721DAC0D300B369DD /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08E7AD8621DAC0D300B369DD /* DetailViewController.swift */; };
 		08F1E26521D9319A00A9EB42 /* BaseDao.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08F1E26421D9319A00A9EB42 /* BaseDao.swift */; };
@@ -74,6 +75,7 @@
 		08D90C7521D630C50066CADB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		08D90C7A21D630C50066CADB /* ios-aws-consoleTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "ios-aws-consoleTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		08D90C8021D630C50066CADB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		08DB03F421DB72D200A4091A /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		08E7AD8421DAC05A00B369DD /* DetailCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailCell.swift; sourceTree = "<group>"; };
 		08E7AD8621DAC0D300B369DD /* DetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		08F1E26421D9319A00A9EB42 /* BaseDao.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseDao.swift; sourceTree = "<group>"; };
@@ -207,6 +209,7 @@
 		08C83A9C21D7E9BA00253D99 /* 3rdParty */ = {
 			isa = PBXGroup;
 			children = (
+				08DB03F321DB72B200A4091A /* Icons */,
 				08C83A9D21D7E9C600253D99 /* Swawsh */,
 			);
 			path = 3rdParty;
@@ -286,6 +289,14 @@
 				08D90C8021D630C50066CADB /* Info.plist */,
 			);
 			path = "ios-aws-consoleTests";
+			sourceTree = "<group>";
+		};
+		08DB03F321DB72B200A4091A /* Icons */ = {
+			isa = PBXGroup;
+			children = (
+				08DB03F421DB72D200A4091A /* README.md */,
+			);
+			path = Icons;
 			sourceTree = "<group>";
 		};
 		08F1E26821D933CE00A9EB42 /* AWS */ = {
@@ -391,6 +402,7 @@
 			files = (
 				08D90C7421D630C50066CADB /* LaunchScreen.storyboard in Resources */,
 				08D90C7121D630C50066CADB /* Assets.xcassets in Resources */,
+				08DB03F521DB72D200A4091A /* README.md in Resources */,
 				08C83AA521D7EA7800253D99 /* LICENSE in Resources */,
 				08D90C6F21D630C30066CADB /* Main.storyboard in Resources */,
 			);

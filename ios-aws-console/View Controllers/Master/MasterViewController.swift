@@ -26,6 +26,7 @@ class MasterViewController: UIViewController {
     var region = "eu-west-1"
 
     override func viewDidLoad() {
+
         super.viewDidLoad()
 
         // if we have a default region overwrite the variable
@@ -40,40 +41,33 @@ class MasterViewController: UIViewController {
         self.regionPicker.delegate = self
     }
 
-    // @IBAction
-    func ec2DescribeInstances() {
-        ec2Service.describeInstances(region: region)
-    }
-
-    // @IBAction
-    func changeRegion() {
+    @IBAction func changeRegion(_ sender: Any) {
 
         UIView.animate(withDuration: 0.3, animations: {
-            self.regionPicker.frame = CGRect(
-                x: 0,
-                y: self.view.bounds.size.height - self.regionPicker.bounds.size.height,
-                width: self.regionPicker.bounds.size.width,
-                height: self.regionPicker.bounds.size.height)
+            self.regionPicker.frame = CGRect(x: 0,
+                                             y: self.view.bounds.size.height - self.regionPicker.bounds.size.height,
+                                             width: self.regionPicker.bounds.size.width,
+                                             height: self.regionPicker.bounds.size.height)
         })
 
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(doneWithPickerView))
         view.addGestureRecognizer(tapGesture)
     }
 
-    // @IBAction
-    func showSettings() {
-        // this allows you to set a set of AWS credentials
-        // change AWS Profile
+    @IBAction func describeInstances(_ sender: Any) {
+        ec2Service.describeInstances(region: region)
+    }
+
+    @IBAction func showSettings(_ sender: Any) {
     }
 
     @objc func doneWithPickerView() {
 
         UIView.animate(withDuration: 0.3, animations: {
-            self.regionPicker.frame = CGRect(
-                x: 0,
-                y: self.view.bounds.size.height,
-                width: self.regionPicker.bounds.size.width,
-                height: self.regionPicker.bounds.size.height)
+            self.regionPicker.frame = CGRect(x: 0,
+                                             y: self.view.bounds.size.height,
+                                             width: self.regionPicker.bounds.size.width,
+                                             height: self.regionPicker.bounds.size.height)
         })
 
         refreshInstances()
