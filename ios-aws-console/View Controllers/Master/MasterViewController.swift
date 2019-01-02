@@ -41,8 +41,6 @@ class MasterViewController: UIViewController {
 
         doneWithPickerView()
 
-        // if we have a default region overwrite the variable
-
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(refreshInstances),
                                                name: .instancesUpdated,

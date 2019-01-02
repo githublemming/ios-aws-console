@@ -36,7 +36,7 @@ class ProfileDao: BaseDao {
     func getProfileByName(name: String) -> Profile? {
 
         let profileRequest = NSFetchRequest<Profile>(entityName: "Profile")
-        profileRequest.predicate = NSPredicate(format: "name == %i", name)
+        profileRequest.predicate = NSPredicate(format: "name == %@", name)
 
         let result = try? persistentContainer.viewContext.fetch(profileRequest) as [Profile]
         return result?[0]
@@ -45,7 +45,7 @@ class ProfileDao: BaseDao {
     func getActiveProfile() -> Profile? {
 
         let profileRequest = NSFetchRequest<Profile>(entityName: "Profile")
-        profileRequest.predicate = NSPredicate(format: "active == %i", true)
+        profileRequest.predicate = NSPredicate(format: "active == %@", true)
 
         let result = try? persistentContainer.viewContext.fetch(profileRequest) as [Profile]
         if (result?.count)! > 0 {
