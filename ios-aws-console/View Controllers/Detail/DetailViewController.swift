@@ -20,12 +20,7 @@ class DetailViewController: UIViewController {
 
     var detailItem: EC2? {
         didSet {
-            if ec2 != nil {
-                ec2!.deflate()
-            }
-
             ec2 = detailItem
-            ec2!.inflate()
             tableView.reloadData()
         }
     }
@@ -40,7 +35,7 @@ extension DetailViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
 
         if ec2 != nil {
-            return ec2!.instanceDetail.count
+            return 0
         } else {
             return 0
         }

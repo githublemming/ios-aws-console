@@ -4,9 +4,20 @@ target 'ios-aws-console' do
 
   use_frameworks!
 
-  pod "SwiftyXMLParser", :git => 'https://github.com/yahoojapan/SwiftyXMLParser.git'
   pod 'Alamofire'
   pod 'BlueCryptor'
-  pod 'SwiftLint'
+  pod 'SWXMLHash'
+  pod 'SwiftyJSON'
+
+end
+
+target 'ios-aws-consoleTests' do
+
+    use_frameworks!
+
+    pod 'Alamofire'
+    pod 'BlueCryptor'
+    pod 'SWXMLHash'
+    pod 'SwiftyJSON'
 
 end

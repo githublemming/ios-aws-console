@@ -7,9 +7,21 @@
 //
 
 import CoreData
-import SwiftyXMLParser
 
 class RegionDao: BaseDao {
+
+    @discardableResult func addRegion(name: String, active: Bool) -> Region? {
+
+        guard let region = NSEntityDescription.insertNewObject(
+            forEntityName: "Region", into: persistentContainer.viewContext) as? Region else { return nil }
+
+        region.name = name
+        region.active = active
+
+        save()
+
+        return region
+    }
 
     func getRegions() -> [Region]? {
 
@@ -22,16 +34,21 @@ class RegionDao: BaseDao {
     func getRegionByName(name: String) -> Region? {
 
         let regionRequest = NSFetchRequest<Region>(entityName: "Region")
-        regionRequest.predicate = NSPredicate(format: "name == %i", true)
+        regionRequest.predicate = NSPredicate(format: "name == %@", name)
 
         let result = try? persistentContainer.viewContext.fetch(regionRequest) as [Region]
-        return result?[0]
+
+        if (result?.count)! > 0 {
+            return result?[0]
+        } else {
+            return nil
+        }
     }
 
     func getActiveRegion() -> Region? {
         
         let regionRequest = NSFetchRequest<Region>(entityName: "Region")
-        regionRequest.predicate = NSPredicate(format: "active == %i", true)
+        regionRequest.predicate = NSPredicate(format: "active == %@", NSNumber(booleanLiteral: true))
 
         let result = try? persistentContainer.viewContext.fetch(regionRequest) as [Region]
         return result?[0]

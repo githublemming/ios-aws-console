@@ -1,32 +1,28 @@
 PODS:
   - Alamofire (4.7.3)
   - BlueCryptor (1.0.14)
-  - SwiftyXMLParser (4.3.0)
+  - SwiftyJSON (4.2.0)
+  - SWXMLHash (4.7.4)
 
 DEPENDENCIES:
   - Alamofire
   - BlueCryptor
-  - SwiftyXMLParser (from `https://github.com/yahoojapan/SwiftyXMLParser.git`)
+  - SwiftyJSON
+  - SWXMLHash
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
     - Alamofire
     - BlueCryptor
-
-EXTERNAL SOURCES:
-  SwiftyXMLParser:
-    :git: https://github.com/yahoojapan/SwiftyXMLParser.git
-
-CHECKOUT OPTIONS:
-  SwiftyXMLParser:
-    :commit: 9c97f83e5f5b1fc0129f77be090052ae46775bd2
-    :git: https://github.com/yahoojapan/SwiftyXMLParser.git
+    - SwiftyJSON
+    - SWXMLHash
 
 SPEC CHECKSUMS:
   Alamofire: c7287b6e5d7da964a70935e5db17046b7fde6568
   BlueCryptor: adb6c5c705e297dab9bceed4150374dfe4afcb6c
-  SwiftyXMLParser: b2e0b0dd0e0fb1ac39869dd4a0c6181847af2945
+  SwiftyJSON: c4bcba26dd9ec7a027fc8eade48e2c911f229e96
+  SWXMLHash: b35739a5cfd915c3b482977aa720d6708e260a90
 
-PODFILE CHECKSUM: 5d9ec4753f1cd3df5214f5e7e6b2a4379dc239ce
+PODFILE CHECKSUM: a914edad39ef5c8080632b1d91e2f0e5d1de53b4
 
 COCOAPODS: 1.5.3

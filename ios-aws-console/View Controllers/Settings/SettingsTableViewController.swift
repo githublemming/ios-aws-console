@@ -18,6 +18,7 @@ class SettingsTableViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        profiles = profileDao.getProfiles()!
     }
 
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -27,7 +28,12 @@ class SettingsTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
 
         if section == 0 {
-            return profiles.count
+            if profiles.count == 0 {
+                return 1
+            } else {
+                return profiles.count
+            }
+
         } else {
             return 5
         }
@@ -48,11 +54,16 @@ class SettingsTableViewController: UITableViewController {
             } else {
                 cell = (tableView.dequeueReusableCell(withIdentifier: "ButtonCell", for: indexPath) as? ButtonCell)!
             }
-
         }
 
         if indexPath.section == 0 {
-            (cell as! SettingsCell).cellLabel.text = profiles[indexPath.row].name
+
+            if profiles.count == 0 {
+                (cell as! SettingsCell).cellLabel.text = "No Profiles Defined"
+            } else {
+                (cell as! SettingsCell).cellLabel.text = profiles[indexPath.row].name
+            }
+
         } else {
 
             if indexPath.row < 4 {
@@ -63,14 +74,18 @@ class SettingsTableViewController: UITableViewController {
             switch indexPath.row {
             case 0:
                 (cell as! EditCell).cellLabel.text = "Name"
+                (cell as! EditCell).cellTextField.addTarget(self, action: #selector(SettingsTableViewController.nameChanged), for: .allEvents)
             case 1:
                 (cell as! EditCell).cellLabel.text = "Access Id"
+                (cell as! EditCell).cellTextField.addTarget(self, action: #selector(SettingsTableViewController.accessChanged), for: .allEvents)
             case 2:
                 (cell as! EditCell).cellLabel.text = "Secret"
+                (cell as! EditCell).cellTextField.addTarget(self, action: #selector(SettingsTableViewController.secretChanged), for: .allEvents)
             case 3:
                 (cell as! EditCell).cellLabel.text = "Active"
                 (cell as! EditCell).cellTextField.isHidden = true
                 (cell as! EditCell).activeSwitch.isHidden = false
+                (cell as! EditCell).activeSwitch.addTarget(self, action: #selector(SettingsTableViewController.activeChanged), for: .allEvents)
             case 4:
                 print("button cell")
             default:
@@ -85,20 +100,39 @@ class SettingsTableViewController: UITableViewController {
 
         if indexPath.section == 1 && indexPath.row == 4 {
 
-            let nameCell = (tableView.dequeueReusableCell(withIdentifier: "EditCell", for: IndexPath(row: 0, section: 1)) as? EditCell)!
-            let accessCell = (tableView.dequeueReusableCell(withIdentifier: "EditCell", for: IndexPath(row: 1, section: 1)) as? EditCell)!
-            let secretCell = (tableView.dequeueReusableCell(withIdentifier: "EditCell", for: IndexPath(row: 2, section: 1)) as? EditCell)!
-            let activeCell = (tableView.dequeueReusableCell(withIdentifier: "EditCell", for: IndexPath(row: 3, section: 1)) as? EditCell)!
-
-            let name = nameCell.cellTextField.text!
-            let accessId = accessCell.cellTextField.text!
-            let secret = secretCell.cellTextField.text!
-            let active = activeCell.activeSwitch.isOn
-
-            if let profile = profileDao.addProfile(name: name, accessId: accessId, secret: secret, active: active) {
-                profiles.append(profile)
-                self.tableView.reloadData()
+            if profileNameValid && profileAccessIdValid && profileSecretValid {
+                if let profile = profileDao.addProfile(name: profileName, accessId: profileAccessId, secret: profileSecret, active: profileActive) {
+                    profiles.append(profile)
+                    self.tableView.reloadData()
+                }
             }
         }
+    }
+
+    var profileName = ""
+    var profileNameValid = true
+    @objc func nameChanged(textField: UITextField) {
+        profileName = textField.text!
+    }
+
+    var profileAccessId = ""
+    var profileAccessIdValid = false
+    let accessPredicate = NSPredicate(format: "self MATCHES %@", "^(?<![A-Z0-9])[A-Z0-9]{20}(?![A-Z0-9])$")
+    @objc func accessChanged(textField: UITextField) {
+        profileAccessId = textField.text!
+        profileAccessIdValid = accessPredicate.evaluate(with: profileAccessId)
+    }
+
+    var profileSecret = ""
+    var profileSecretValid = false
+    let secretPredicate = NSPredicate(format: "self MATCHES %@", "^(?<![A-Za-z0-9/+=])[A-Za-z0-9/+=]{40}(?![A-Za-z0-9/+=])$")
+    @objc func secretChanged(textField: UITextField) {
+        profileSecret = textField.text!
+        profileSecretValid = secretPredicate.evaluate(with: profileSecret)
+    }
+
+    var profileActive = false
+    @objc func activeChanged(activeSwitch: UISwitch) {
+        profileActive = activeSwitch.isOn
     }
 }
