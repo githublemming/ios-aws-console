@@ -7,17 +7,25 @@
 //
 
 import Alamofire
-import SwiftyXMLParser
 
 class BaseService {
 
     let swawsh = SwawshCredential.sharedInstance
-    let profileDao = ProfileDao()
+
+    let ec2Dao: Ec2Dao!
+    let regionDao: RegionDao!
+    let profileDao: ProfileDao!
+
+    init(ec2_dao: Ec2Dao, region_dao: RegionDao, profile_dao: ProfileDao) {
+        self.ec2Dao = ec2_dao;
+        self.regionDao = region_dao
+        self.profileDao = profile_dao
+    }
 
     func sendRequest(awsService: AwsService,
                      region: String,
                      queryParams: String,
-                     completion: @escaping (XML.Accessor) -> Void) {
+                     completion: @escaping (Data) -> Void) {
 
         if let activeProfile = profileDao.getActiveProfile() {
 
@@ -45,7 +53,7 @@ class BaseService {
             Alamofire.request(url, headers: headers).responseData { response in
 
                 if let data = response.data {
-                    completion(XML.parse(data))
+                     completion(data)
                 }
             }
         }

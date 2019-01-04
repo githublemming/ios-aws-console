@@ -7,15 +7,15 @@
 //
 
 import XCTest
+
 @testable import ios_aws_console
 
 class Ec2DaoTests: CoreDataBaseTest {
 
-    var ec2Dao: Ec2Dao?
+    var ec2Dao: Ec2Dao!
 
     override func setUp() {
         super.setUp()
-
         ec2Dao = Ec2Dao(container: mockPersistantContainer)
     }
 
@@ -24,15 +24,9 @@ class Ec2DaoTests: CoreDataBaseTest {
         super.tearDown()
     }
 
-    func testExample() {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
-    }
-
-    func testPerformanceExample() {
-        // This is an example of a performance test case.
-        self.measure {
-            // Put the code you want to measure the time of here.
-        }
-    }
+//    func test_add_instance() {
+//
+//        let ec2 = ec2Dao.addInstance(instanceId: "i-123456789", region: "eu-west-1", detail: "data")
+//        XCTAssertNotNil( ec2 )
+//    }
 }

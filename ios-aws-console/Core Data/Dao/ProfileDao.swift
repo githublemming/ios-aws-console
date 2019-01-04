@@ -10,7 +10,7 @@ import CoreData
 
 class ProfileDao: BaseDao {
 
-    func addProfile(name: String, accessId: String, secret: String, active: Bool) -> Profile? {
+    @discardableResult func addProfile(name: String, accessId: String, secret: String, active: Bool) -> Profile? {
 
         guard let profile = NSEntityDescription.insertNewObject(
             forEntityName: "Profile", into: persistentContainer.viewContext) as? Profile else { return nil }
@@ -45,7 +45,7 @@ class ProfileDao: BaseDao {
     func getActiveProfile() -> Profile? {
 
         let profileRequest = NSFetchRequest<Profile>(entityName: "Profile")
-        profileRequest.predicate = NSPredicate(format: "active == %@", true)
+        profileRequest.predicate = NSPredicate(format: "active == %@", NSNumber(booleanLiteral: true))
 
         let result = try? persistentContainer.viewContext.fetch(profileRequest) as [Profile]
         if (result?.count)! > 0 {

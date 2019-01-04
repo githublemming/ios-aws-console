@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="14460.32" systemVersion="18C54" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
-    <entity name="EC2" representedClassName="EC2" syncable="YES">
+    <entity name="EC2" representedClassName="EC2" syncable="YES" codeGenerationType="class">
+        <attribute name="detail" attributeType="String" customClassName="[String: String]" syncable="YES"/>
         <attribute name="instanceId" attributeType="String" syncable="YES"/>
+        <attribute name="instanceState" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="region" attributeType="String" syncable="YES"/>
-        <attribute name="xml" attributeType="String" syncable="YES"/>
     </entity>
     <entity name="Profile" representedClassName="Profile" syncable="YES" codeGenerationType="class">
         <attribute name="access_id" attributeType="String" syncable="YES"/>
@@ -16,7 +17,7 @@
         <attribute name="name" attributeType="String" syncable="YES"/>
     </entity>
     <elements>
-        <element name="EC2" positionX="-63" positionY="-18" width="128" height="90"/>
+        <element name="EC2" positionX="-63" positionY="-18" width="128" height="105"/>
         <element name="Profile" positionX="-63" positionY="0" width="128" height="105"/>
         <element name="Region" positionX="-63" positionY="18" width="128" height="75"/>
     </elements>

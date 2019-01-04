@@ -1,32 +1,18 @@
 //
-//  Ec2ServiceTests.swift
+//  Xml2Json.swift
 //  ios-aws-consoleTests
 //
-//  Created by Mark Haskins on 31/12/2018.
-//  Copyright © 2018 Mark Haskins. All rights reserved.
+//  Created by Mark Haskins on 04/01/2019.
+//  Copyright © 2019 Mark Haskins. All rights reserved.
 //
 
 import XCTest
+import SWXMLHash
+import SwiftyJSON
 
 @testable import ios_aws_console
 
-class Ec2ServiceTests: CoreDataBaseTest {
-
-    let describeRegionsResponse = """
-<DescribeRegionsResponse xmlns="http://ec2.amazonaws.com/doc/2016-11-15/">
-   <requestId>59dbff89-35bd-4eac-99ed-be587EXAMPLE</requestId>
-   <regionInfo>
-      <item>
-         <regionName>us-east-1</regionName>
-         <regionEndpoint>ec2.us-east-1.amazonaws.com</regionEndpoint>
-      </item>
-      <item>
-         <regionName>eu-west-1</regionName>
-         <regionEndpoint>ec2.eu-west-1.amazonaws.com</regionEndpoint>
-      </item>
-   </regionInfo>
-</DescribeRegionsResponse>
-"""
+class Ec2XmlToJson: XCTestCase {
 
     let describeInstancesResponse = """
 <DescribeInstancesResponse xmlns="http://ec2.amazonaws.com/doc/2016-11-15/">
@@ -159,43 +145,22 @@ class Ec2ServiceTests: CoreDataBaseTest {
 </DescribeInstancesResponse>
 """
 
-    var ec2Service: Ec2Service!
-
-    var ec2Dao: Ec2Dao!
-    var regionDao: RegionDao!
-    var profileDao: ProfileDao!
+    // storing dictionaries in Array as an array is easier to handle as a Table DataSource
+    var details = [[String: String]]()
 
     override func setUp() {
         super.setUp()
-
-        ec2Dao = Ec2Dao(container: mockPersistantContainer)
-        regionDao = RegionDao(container: mockPersistantContainer)
-        profileDao = ProfileDao(container: mockPersistantContainer)
-
-        ec2Service = Ec2Service(ec2_dao: ec2Dao, region_dao: regionDao, profile_dao: profileDao)
+        details = [[String: String]]()
     }
 
-    override func tearDown() {
-        flushData(entityName: "EC2")
-        flushData(entityName: "Region")
-        
-        super.tearDown()
+    func test_getJsonString() {
+
+        let xml = SWXMLHash.parse(describeInstancesResponse)
+        let instancesXml = xml["DescribeInstancesResponse"]["reservationSet"]["item"]["instancesSet"]["item"]
+
+        let detail = Ec2XmltoJson().getJsonString(xml: instancesXml)
+
+        print(detail)
     }
 
-    func test_describe_instances_completion_handler() {
-
-        ec2Service.describeInstancesCompletionHandler(instances: describeInstancesResponse.data(using: .utf8)!)
-
-        let results = ec2Dao.getInstances()
-        XCTAssertEqual(results?.count, 1)
-
-    }
-
-    func test_describe_regions_completion_handler() {
-
-        ec2Service.describeRegionsCompletionHandler(regions: describeRegionsResponse.data(using: .utf8)!)
-
-        let results = regionDao.getRegions()
-        XCTAssertEqual(results?.count, 2)
-    }
 }

@@ -6,12 +6,15 @@
 //  Copyright © 2018 Mark Haskins. All rights reserved.
 //
 
-import SwiftyXMLParser
+import UIKit
+
+import SWXMLHash
 
 class Ec2Service: BaseService, AwsService {
 
-    let ec2Dao = Ec2Dao()
-    let regionDao = RegionDao()
+    override init(ec2_dao: Ec2Dao, region_dao: RegionDao, profile_dao: ProfileDao) {
+        super.init(ec2_dao: ec2_dao, region_dao: region_dao, profile_dao: profile_dao)
+    }
 
     func service() -> String {
         return "ec2"
@@ -26,39 +29,54 @@ class Ec2Service: BaseService, AwsService {
     }
 
     func describeInstances(region: String) {
+
         sendRequest(awsService: self,
                     region: region,
                     queryParams: "DescribeInstances",
                     completion: describeInstancesCompletionHandler)
     }
-    func describeInstancesCompletionHandler(instances: XML.Accessor) {
+    func describeInstancesCompletionHandler(instances: Data) {
 
-        for instance in instances["DescribeInstancesResponse", "reservationSet", "item", "instancesSet", "item"] {
+        let xml = SWXMLHash.parse(instances)
+        let instancesXml = xml["DescribeInstancesResponse"]["reservationSet"]["item"]["instancesSet"]
 
-            let availabilitZone = instance["placement", "availabilityZone"].text!
-            let instanceId = instance["instanceId"].text!
+        for item in instancesXml.children {
 
-            // if instance id already exists get existing model and overwrite, else create a new one
-            ec2Dao.getInstanceByInstanceId(instanceId: instanceId)
+            let instanceId = item["instanceId"].element!.text
+            let availabilitZone = item["placement"]["availabilityZone"].element!.text
+            let detail = Ec2XmltoJson().getJsonString(xml: item)
 
-            let ec2 = EC2()
-            ec2.instanceId = instanceId
-            ec2.region = String(availabilitZone.dropLast())
-            ec2.xml = instance.text!
+            if ec2Dao.getInstanceByInstanceId(instanceId: instanceId) != nil {
+                ec2Dao.updateInstance(instanceId: instanceId, region: String(availabilitZone.dropLast()), details: detail)
+            } else {
+                ec2Dao.addInstance(instanceId: instanceId, region: String(availabilitZone.dropLast()), details: detail)
+            }
         }
-
-        // save
 
         NotificationCenter.default.post(name: .instancesUpdated, object: self, userInfo: nil)
     }
 
     func describeRegions() {
+
         sendRequest(awsService: self,
                     region: "eu-west-1",
                     queryParams: "DescribeRegions",
                     completion: describeRegionsCompletionHandler)
     }
-    func describeRegionsCompletionHandler(regions: XML.Accessor) {
+    func describeRegionsCompletionHandler(regions: Data) {
 
+        let xml = SWXMLHash.parse(regions)
+        let regionXml = xml["DescribeRegionsResponse"]["regionInfo"]
+        for item in regionXml.children {
+
+            let regionName = item["regionName"].element!.text
+
+            let region = regionDao.getRegionByName(name: regionName)
+            if region == nil {
+                regionDao.addRegion(name: regionName, active: false)
+            }
+        }
+
+        NotificationCenter.default.post(name: .regionsUpdated, object: self, userInfo: nil)
     }
 }

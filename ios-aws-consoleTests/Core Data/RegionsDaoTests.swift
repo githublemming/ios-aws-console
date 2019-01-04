@@ -7,11 +7,12 @@
 //
 
 import XCTest
+
 @testable import ios_aws_console
 
 class RegionDaoTests: CoreDataBaseTest {
 
-    var regionDao: RegionDao?
+    var regionDao: RegionDao!
 
     override func setUp() {
         super.setUp()
@@ -24,15 +25,54 @@ class RegionDaoTests: CoreDataBaseTest {
         super.tearDown()
     }
 
-    func testExample() {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
+    func test_create_region() {
+
+        let name = "eu-west-1"
+        let active = true
+
+        let region = regionDao.addRegion(name: name, active: active)
+
+        XCTAssertNotNil( region )
     }
 
-    func testPerformanceExample() {
-        // This is an example of a performance test case.
-        self.measure {
-            // Put the code you want to measure the time of here.
-        }
+    func test_fetch_all_regions() {
+
+        regionDao.addRegion(name: "eu-west-1", active: true)
+
+        let results = regionDao.getRegions()
+
+        XCTAssertEqual(results?.count, 1)
     }
+
+    func test_region_by_name() {
+
+        regionDao.addRegion(name: "eu-west-1", active: true)
+
+        let result = regionDao.getRegionByName(name: "eu-west-1")
+
+        XCTAssertEqual(result?.name, "eu-west-1")
+    }
+
+    func test_active_region() {
+
+        regionDao.addRegion(name: "eu-west-1", active: true)
+        regionDao.addRegion(name: "eu-west-2", active: false)
+
+        let region = regionDao.getActiveRegion()
+
+        XCTAssertEqual(region?.name, "eu-west-1")
+    }
+
+    func test_set_active_region() {
+
+        regionDao.addRegion(name: "eu-west-1", active: true)
+        let inactive = regionDao.addRegion(name: "eu-west-2", active: false)
+
+        regionDao.setActiveRegion(region: inactive!)
+
+        let region = regionDao.getActiveRegion()
+
+        XCTAssertEqual(region?.name, "eu-west-2")
+    }
+
 }

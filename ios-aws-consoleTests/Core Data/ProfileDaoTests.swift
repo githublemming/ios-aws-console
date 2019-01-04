@@ -7,6 +7,7 @@
 //
 
 import XCTest
+
 @testable import ios_aws_console
 
 class ProfileDaoTests: CoreDataBaseTest {
@@ -50,18 +51,6 @@ class ProfileDaoTests: CoreDataBaseTest {
         XCTAssertEqual(results?.count, 1)
     }
 
-//    func test_remove_profile() {
-//
-//        let items = profileDao.fetchAll()
-//        let item = items![0]
-//
-//        let numberOfItems = items?.count
-//
-//        quizDao.delete(quiz: item)
-//
-//        XCTAssertEqual(numberOfItemsInPersistentStore(entityName: "Quiz"), numberOfItems!-1)
-//    }
-
     func test_profile_by_name() {
 
         let name = "Profile Name"
@@ -74,5 +63,27 @@ class ProfileDaoTests: CoreDataBaseTest {
         let profile = profileDao.getProfileByName(name: "Profile Name")
 
         XCTAssertEqual(profile?.secret, "My Secret")
+    }
+
+    func test_active_profile() {
+
+        profileDao.addProfile(name: "Active", accessId: "abc", secret: "def", active: true)
+        profileDao.addProfile(name: "Inactive", accessId: "zyx", secret: "wvu", active: false)
+
+        let profile = profileDao.getActiveProfile()
+
+        XCTAssertEqual(profile?.name, "Active")
+    }
+
+    func test_set_active_profile() {
+
+        profileDao.addProfile(name: "Active", accessId: "abc", secret: "def", active: true)
+        let inactive = profileDao.addProfile(name: "Inactive", accessId: "zyx", secret: "wvu", active: false)
+
+        profileDao.setActiveProfile(profile: inactive!)
+
+        let profile = profileDao.getActiveProfile()
+
+        XCTAssertEqual(profile?.name, "Inactive")
     }
 }

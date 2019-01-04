@@ -22,8 +22,9 @@ class MasterViewController: UIViewController {
 
     let ec2Dao = Ec2Dao()
     let regionDao = RegionDao()
+    let profileDao = ProfileDao()
 
-    let ec2Service = Ec2Service()
+    var ec2Service: Ec2Service!
 
     fileprivate let reuseIdentifier = "Cell"
     fileprivate let sectionInsets = UIEdgeInsets(top: 20.0, left: 20.0, bottom: 20.0, right: 20.0)
@@ -34,6 +35,8 @@ class MasterViewController: UIViewController {
     override func viewDidLoad() {
 
         super.viewDidLoad()
+
+        ec2Service = Ec2Service(ec2_dao: ec2Dao, region_dao: regionDao, profile_dao: profileDao)
 
         navBar.title = region
 
@@ -84,7 +87,7 @@ class MasterViewController: UIViewController {
 
     @objc func refreshInstances() {
         
-        instances = ec2Dao.getInstances(region: region)!
+        instances = ec2Dao.getInstancesByRegion(region: region)!
 
         if instances.count > 0 {
             collectionView.reloadData()
