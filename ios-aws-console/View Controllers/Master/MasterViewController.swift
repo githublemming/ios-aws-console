@@ -36,7 +36,7 @@ class MasterViewController: UIViewController {
 
         super.viewDidLoad()
 
-        ec2Service = Ec2Service(ec2_dao: ec2Dao, region_dao: regionDao, profile_dao: profileDao)
+        ec2Service = Ec2Service(ec2Dao: ec2Dao, regionDao: regionDao, profileDao: profileDao)
 
         navBar.title = region
 
@@ -68,7 +68,6 @@ class MasterViewController: UIViewController {
         ec2Service.describeInstances(region: region)
     }
 
-
     @IBAction func showSettings(_ sender: Any) {
         print("settinggs")
     }
@@ -86,7 +85,7 @@ class MasterViewController: UIViewController {
     }
 
     @objc func refreshInstances() {
-        
+
         instances = ec2Dao.getInstancesByRegion(region: region)!
 
         if instances.count > 0 {

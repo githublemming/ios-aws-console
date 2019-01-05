@@ -13,8 +13,8 @@ import SWXMLHash
 /// Provides EC2 service implementation
 class Ec2Service: BaseService, AwsService {
 
-    override init(ec2_dao: Ec2Dao, region_dao: RegionDao, profile_dao: ProfileDao) {
-        super.init(ec2_dao: ec2_dao, region_dao: region_dao, profile_dao: profile_dao)
+    override init(ec2Dao: Ec2Dao, regionDao: RegionDao, profileDao: ProfileDao) {
+        super.init(ec2Dao: ec2Dao, regionDao: regionDao, profileDao: profileDao)
     }
 
     func service() -> String {
@@ -60,9 +60,15 @@ class Ec2Service: BaseService, AwsService {
             let detail = Ec2XmltoJson().getJsonString(xml: item)
 
             if ec2Dao.getInstanceByInstanceId(instanceId: instanceId) != nil {
-                ec2Dao.updateInstance(instanceId: instanceId, region: String(availabilitZone.dropLast()), details: detail)
+                ec2Dao.updateInstance(
+                    instanceId: instanceId,
+                    region: String(availabilitZone.dropLast()),
+                    details: detail)
             } else {
-                ec2Dao.addInstance(instanceId: instanceId, region: String(availabilitZone.dropLast()), details: detail)
+                ec2Dao.addInstance(
+                    instanceId: instanceId,
+                    region: String(availabilitZone.dropLast()),
+                    details: detail)
             }
         }
 

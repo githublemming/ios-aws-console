@@ -8,7 +8,6 @@
 
 import CoreData
 
-
 /// DAO class that deals with Profile models in Core Data
 class ProfileDao: BaseDao {
 
