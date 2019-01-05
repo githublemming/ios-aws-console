@@ -66,9 +66,9 @@ class RegionDao: BaseDao {
 
         if (result?.count)! > 0 {
             return result?[0]
-        } else {
-            return nil
         }
+
+        return nil
     }
 
     /**

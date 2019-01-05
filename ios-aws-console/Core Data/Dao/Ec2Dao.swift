@@ -101,8 +101,8 @@ class Ec2Dao: BaseDao {
         let result = try? persistentContainer.viewContext.fetch(ec2Request) as [EC2]
         if (result?.count)! > 0 {
             return result?[0]
-        } else {
-            return nil
         }
+
+        return nil
     }
 }

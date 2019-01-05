@@ -19,9 +19,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDele
         didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
 
         // Override point for customization after application launch.
-        let splitViewController = self.window!.rootViewController as! UISplitViewController
-        let navigationController = splitViewController.viewControllers[splitViewController.viewControllers.count-1] as! UINavigationController
-        navigationController.topViewController!.navigationItem.leftBarButtonItem = splitViewController.displayModeButtonItem
+        let splitViewController =
+            self.window!.rootViewController as! UISplitViewController
+
+        let navigationController =
+            splitViewController.viewControllers[splitViewController.viewControllers.count-1] as! UINavigationController
+
+        navigationController.topViewController!.navigationItem.leftBarButtonItem
+            = splitViewController.displayModeButtonItem
+
         splitViewController.delegate = self
 
         return true
@@ -54,8 +60,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDele
         collapseSecondary secondaryViewController:UIViewController,
         onto primaryViewController:UIViewController) -> Bool {
 
-        guard let secondaryAsNavController = secondaryViewController as? UINavigationController else { return false }
-        guard let topAsDetailController = secondaryAsNavController.topViewController as? DetailViewController else { return false }
+        guard let secondaryAsNavController =
+            secondaryViewController as? UINavigationController else { return false }
+
+        guard let topAsDetailController =
+            secondaryAsNavController.topViewController as? DetailViewController else { return false }
 
         if topAsDetailController.instanceId == nil {
             return true
@@ -89,4 +98,3 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDele
         }
     }
 }
-
