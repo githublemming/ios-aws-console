@@ -51,11 +51,8 @@ class Ec2XmltoJson {
     */
     fileprivate func enumerate(indexer: XMLIndexer) {
 
-        for item in indexer.children {
-
-            if item.children.count == 0 {
-                details.append([item.element!.name: item.element!.text])
-            }
+        for item in indexer.children where item.children.count == 0 {
+            details.append([item.element!.name: item.element!.text])
         }
     }
 }

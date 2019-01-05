@@ -25,10 +25,10 @@ class BaseService {
        - region_dao: an instance of RegionDao
        - profile_dao: an instance of ProfileDao
     */
-    init(ec2_dao: Ec2Dao, region_dao: RegionDao, profile_dao: ProfileDao) {
-        self.ec2Dao = ec2_dao;
-        self.regionDao = region_dao
-        self.profileDao = profile_dao
+    init(ec2Dao: Ec2Dao, regionDao: RegionDao, profileDao: ProfileDao) {
+        self.ec2Dao = ec2Dao
+        self.regionDao = regionDao
+        self.profileDao = profileDao
     }
 
     /**
@@ -67,7 +67,8 @@ class BaseService {
                 "Host": awsService.endpoint()
             ]
 
-            let url = "https://\(awsService.endpointWithRegion(region: region))?Action=\(queryParams)&Version=2013-10-15"
+            let endpoint = awsService.endpointWithRegion(region: region)
+            let url = "https://\(endpoint)?Action=\(queryParams)&Version=2013-10-15"
             Alamofire.request(url, headers: headers).responseData { response in
 
                 if let data = response.data {

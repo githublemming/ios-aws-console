@@ -59,34 +59,34 @@ class SettingsTableViewController: UITableViewController {
         if indexPath.section == 0 {
 
             if profiles.count == 0 {
-                (cell as! SettingsCell).cellLabel.text = "No Profiles Defined"
+                (cell as? SettingsCell)?.cellLabel.text = "No Profiles Defined"
             } else {
-                (cell as! SettingsCell).cellLabel.text = profiles[indexPath.row].name
+                (cell as? SettingsCell)?.cellLabel.text = profiles[indexPath.row].name
             }
 
         } else {
 
             if indexPath.row < 4 {
-                (cell as! EditCell).cellTextField.isHidden = false
-                (cell as! EditCell).activeSwitch.isHidden = true
+                (cell as? EditCell)?.cellTextField.isHidden = false
+                (cell as? EditCell)?.activeSwitch.isHidden = true
             }
 
             switch indexPath.row {
             case 0:
-                (cell as! EditCell).cellLabel.text = "Name"
-                (cell as! EditCell).cellTextField.addTarget(self, action: #selector(SettingsTableViewController.nameChanged), for: .allEvents)
+                (cell as? EditCell)?.cellLabel.text = "Name"
+                (cell as? EditCell)?.cellTextField.addTarget(self, action: #selector(SettingsTableViewController.nameChanged), for: .allEvents)
             case 1:
-                (cell as! EditCell).cellLabel.text = "Access Id"
-                (cell as! EditCell).cellTextField.addTarget(self, action: #selector(SettingsTableViewController.accessChanged), for: .allEvents)
+                (cell as? EditCell)?.cellLabel.text = "Access Id"
+                (cell as? EditCell)?.cellTextField.addTarget(self, action: #selector(SettingsTableViewController.accessChanged), for: .allEvents)
             case 2:
-                (cell as! EditCell).cellLabel.text = "Secret"
-                (cell as! EditCell).cellTextField.isSecureTextEntry = true
-                (cell as! EditCell).cellTextField.addTarget(self, action: #selector(SettingsTableViewController.secretChanged), for: .allEvents)
+                (cell as? EditCell)?.cellLabel.text = "Secret"
+                (cell as? EditCell)?.cellTextField.isSecureTextEntry = true
+                (cell as? EditCell)?.cellTextField.addTarget(self, action: #selector(SettingsTableViewController.secretChanged), for: .allEvents)
             case 3:
-                (cell as! EditCell).cellLabel.text = "Active"
-                (cell as! EditCell).cellTextField.isHidden = true
-                (cell as! EditCell).activeSwitch.isHidden = false
-                (cell as! EditCell).activeSwitch.addTarget(self, action: #selector(SettingsTableViewController.activeChanged), for: .allEvents)
+                (cell as? EditCell)?.cellLabel.text = "Active"
+                (cell as? EditCell)?.cellTextField.isHidden = true
+                (cell as? EditCell)?.activeSwitch.isHidden = false
+                (cell as? EditCell)?.activeSwitch.addTarget(self, action: #selector(SettingsTableViewController.activeChanged), for: .allEvents)
             case 4:
                 print("button cell")
             default:
