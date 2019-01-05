@@ -70,6 +70,7 @@ class ProfileDao: BaseDao {
         if (result?.count)! > 0 {
             return result?[0]
         }
+
         return nil
     }
 
@@ -88,6 +89,7 @@ class ProfileDao: BaseDao {
         if (result?.count)! > 0 {
             return result?[0]
         }
+
         return nil
     }
 

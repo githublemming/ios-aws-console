@@ -31,7 +31,6 @@ class RegionDaoTests: CoreDataBaseTest {
         let active = true
 
         let region = regionDao.addRegion(name: name, active: active)
-
         XCTAssertNotNil( region )
     }
 
@@ -40,7 +39,6 @@ class RegionDaoTests: CoreDataBaseTest {
         regionDao.addRegion(name: "eu-west-1", active: true)
 
         let results = regionDao.getRegions()
-
         XCTAssertEqual(results?.count, 1)
     }
 
@@ -49,7 +47,6 @@ class RegionDaoTests: CoreDataBaseTest {
         regionDao.addRegion(name: "eu-west-1", active: true)
 
         let result = regionDao.getRegionByName(name: "eu-west-1")
-
         XCTAssertEqual(result?.name, "eu-west-1")
     }
 
@@ -65,7 +62,6 @@ class RegionDaoTests: CoreDataBaseTest {
         regionDao.addRegion(name: "eu-west-2", active: false)
 
         let region = regionDao.getActiveRegion()
-
         XCTAssertEqual(region?.name, "eu-west-1")
     }
 
@@ -77,7 +73,6 @@ class RegionDaoTests: CoreDataBaseTest {
         regionDao.setActiveRegion(region: inactive!)
 
         let region = regionDao.getActiveRegion()
-
         XCTAssertEqual(region?.name, "eu-west-2")
     }
 

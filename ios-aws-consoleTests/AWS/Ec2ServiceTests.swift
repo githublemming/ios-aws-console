@@ -178,7 +178,7 @@ class Ec2ServiceTests: CoreDataBaseTest {
     override func tearDown() {
         flushData(entityName: "EC2")
         flushData(entityName: "Region")
-        
+
         super.tearDown()
     }
 

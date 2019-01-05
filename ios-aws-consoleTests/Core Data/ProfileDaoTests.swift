@@ -47,7 +47,6 @@ class ProfileDaoTests: CoreDataBaseTest {
         profileDao.addProfile(name: name, accessId: accessId, secret: secret, active: active)
 
         let results = profileDao.getProfiles()
-
         XCTAssertEqual(results?.count, 1)
     }
 
@@ -61,14 +60,12 @@ class ProfileDaoTests: CoreDataBaseTest {
         profileDao.addProfile(name: name, accessId: accessId, secret: secret, active: active)
 
         let profile = profileDao.getProfileByName(name: "Profile Name")
-
         XCTAssertEqual(profile?.secret, "My Secret")
     }
 
     func test_profile_by_name_fail() {
 
         let profile = profileDao.getProfileByName(name: "Profile Name")
-
         XCTAssertNil(profile)
     }
 
@@ -78,7 +75,6 @@ class ProfileDaoTests: CoreDataBaseTest {
         profileDao.addProfile(name: "Inactive", accessId: "zyx", secret: "wvu", active: false)
 
         let profile = profileDao.getActiveProfile()
-
         XCTAssertEqual(profile?.name, "Active")
     }
 
@@ -87,7 +83,6 @@ class ProfileDaoTests: CoreDataBaseTest {
         profileDao.addProfile(name: "Inactive", accessId: "zyx", secret: "wvu", active: false)
 
         let profile = profileDao.getActiveProfile()
-
         XCTAssertNil(profile)
     }
 
@@ -99,7 +94,6 @@ class ProfileDaoTests: CoreDataBaseTest {
         profileDao.setActiveProfile(profile: inactive!)
 
         let profile = profileDao.getActiveProfile()
-
         XCTAssertEqual(profile?.name, "Inactive")
     }
 }

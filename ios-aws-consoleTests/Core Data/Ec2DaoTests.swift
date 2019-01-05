@@ -27,8 +27,8 @@ class Ec2DaoTests: CoreDataBaseTest {
     func test_get_instances() {
 
         ec2Dao.addInstance(instanceId: "i-123456789", region: "eu-west-1", details: "data")
-        let results = ec2Dao.getInstances()
 
+        let results = ec2Dao.getInstances()
         XCTAssertEqual(results?.count, 1)
     }
 
@@ -36,8 +36,8 @@ class Ec2DaoTests: CoreDataBaseTest {
 
         ec2Dao.addInstance(instanceId: "i-123456789", region: "eu-west-1", details: "data")
         ec2Dao.addInstance(instanceId: "i-123456789", region: "eu-central-1", details: "data")
-        let results = ec2Dao.getInstancesByRegion(region: "eu-west-1")
 
+        let results = ec2Dao.getInstancesByRegion(region: "eu-west-1")
         XCTAssertEqual(results?.count, 1)
     }
 
@@ -59,5 +59,16 @@ class Ec2DaoTests: CoreDataBaseTest {
 
         let ec2 = ec2Dao.getInstanceByInstanceId(instanceId: "i-123456789")
         XCTAssertNil( ec2 )
+    }
+
+    func test_update_instance() {
+
+        ec2Dao.addInstance(instanceId: "i-123456789", region: "eu-west-1", details: "data")
+        let ec2 = ec2Dao.getInstanceByInstanceId(instanceId: "i-123456789")
+        XCTAssertEqual(ec2?.region, "eu-west-1")
+
+        ec2Dao.updateInstance(instanceId: "i-123456789", region: "eu-central-1", details: "data")
+        let ec22 = ec2Dao.getInstanceByInstanceId(instanceId: "i-123456789")
+        XCTAssertEqual(ec22?.region, "eu-central-1")
     }
 }

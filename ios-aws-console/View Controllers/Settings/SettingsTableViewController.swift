@@ -74,19 +74,23 @@ class SettingsTableViewController: UITableViewController {
             switch indexPath.row {
             case 0:
                 (cell as? EditCell)?.cellLabel.text = "Name"
-                (cell as? EditCell)?.cellTextField.addTarget(self, action: #selector(SettingsTableViewController.nameChanged), for: .allEvents)
+                (cell as? EditCell)?.cellTextField.addTarget(
+                    self, action: #selector(SettingsTableViewController.nameChanged), for: .allEvents)
             case 1:
                 (cell as? EditCell)?.cellLabel.text = "Access Id"
-                (cell as? EditCell)?.cellTextField.addTarget(self, action: #selector(SettingsTableViewController.accessChanged), for: .allEvents)
+                (cell as? EditCell)?.cellTextField.addTarget(
+                    self, action: #selector(SettingsTableViewController.accessChanged), for: .allEvents)
             case 2:
                 (cell as? EditCell)?.cellLabel.text = "Secret"
                 (cell as? EditCell)?.cellTextField.isSecureTextEntry = true
-                (cell as? EditCell)?.cellTextField.addTarget(self, action: #selector(SettingsTableViewController.secretChanged), for: .allEvents)
+                (cell as? EditCell)?.cellTextField.addTarget(
+                    self, action: #selector(SettingsTableViewController.secretChanged), for: .allEvents)
             case 3:
                 (cell as? EditCell)?.cellLabel.text = "Active"
                 (cell as? EditCell)?.cellTextField.isHidden = true
                 (cell as? EditCell)?.activeSwitch.isHidden = false
-                (cell as? EditCell)?.activeSwitch.addTarget(self, action: #selector(SettingsTableViewController.activeChanged), for: .allEvents)
+                (cell as? EditCell)?.activeSwitch.addTarget(
+                    self, action: #selector(SettingsTableViewController.activeChanged), for: .allEvents)
             case 4:
                 print("button cell")
             default:
@@ -102,7 +106,12 @@ class SettingsTableViewController: UITableViewController {
         if indexPath.section == 1 && indexPath.row == 4 {
 
             if profileNameValid && profileAccessIdValid && profileSecretValid {
-                if let profile = profileDao.addProfile(name: profileName, accessId: profileAccessId, secret: profileSecret, active: profileActive) {
+                if let profile = profileDao.addProfile(
+                    name: profileName,
+                    accessId: profileAccessId,
+                    secret: profileSecret,
+                    active: profileActive) {
+
                     profiles.append(profile)
                     self.tableView.reloadData()
                 }
@@ -118,7 +127,9 @@ class SettingsTableViewController: UITableViewController {
 
     var profileAccessId = ""
     var profileAccessIdValid = false
-    let accessPredicate = NSPredicate(format: "self MATCHES %@", "^(?<![A-Z0-9])[A-Z0-9]{20}(?![A-Z0-9])$")
+    let accessPredicate =
+        NSPredicate(format: "self MATCHES %@", "^(?<![A-Z0-9])[A-Z0-9]{20}(?![A-Z0-9])$")
+    
     @objc func accessChanged(textField: UITextField) {
         profileAccessId = textField.text!
         profileAccessIdValid = accessPredicate.evaluate(with: profileAccessId)
@@ -126,7 +137,9 @@ class SettingsTableViewController: UITableViewController {
 
     var profileSecret = ""
     var profileSecretValid = false
-    let secretPredicate = NSPredicate(format: "self MATCHES %@", "^(?<![A-Za-z0-9/+=])[A-Za-z0-9/+=]{40}(?![A-Za-z0-9/+=])$")
+    let secretPredicate =
+        NSPredicate(format: "self MATCHES %@", "^(?<![A-Za-z0-9/+=])[A-Za-z0-9/+=]{40}(?![A-Za-z0-9/+=])$")
+
     @objc func secretChanged(textField: UITextField) {
         profileSecret = textField.text!
         profileSecretValid = secretPredicate.evaluate(with: profileSecret)

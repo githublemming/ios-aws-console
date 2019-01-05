@@ -29,9 +29,11 @@ class DetailViewController: UIViewController {
 
                 let detail = ec2.detail
                 let json = JSON(detail!.data(using: .utf8, allowLossyConversion: false)!)
+
                 for (_, subJson):(String, JSON) in json {
+
                     let detail = subJson.dictionaryObject
-                    instanceDetails.append(detail as! [String : String])
+                    instanceDetails.append(detail as! [String: String])
                 }
 
                 tableView.reloadData()

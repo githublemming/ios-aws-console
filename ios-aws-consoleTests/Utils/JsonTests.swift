@@ -24,8 +24,8 @@ class JsonTests: XCTestCase {
 
     func test_json() {
 
-        details.append(["Key 1":"Value 1"])
-        details.append(["Key 2":"Value 2"])
+        details.append(["Key 1": "Value 1"])
+        details.append(["Key 2": "Value 2"])
 
         let json = JSON(details)
         let jsonJtring = json.rawString(options: [])!
