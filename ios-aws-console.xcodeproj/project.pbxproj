@@ -14,11 +14,11 @@
 		081C4F1921DA8D3400EAFBAD /* RegionDao.swift in Sources */ = {isa = PBXBuildFile; fileRef = 081C4F1721DA8D3400EAFBAD /* RegionDao.swift */; };
 		0827B8F521D825CF00AF18F4 /* InstanceCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0827B8F421D825CF00AF18F4 /* InstanceCell.swift */; };
 		084421B321D6433300EE25A4 /* ios-aws-console.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 084421B121D6433300EE25A4 /* ios-aws-console.xcdatamodeld */; };
+		087FDE1621E11D8F0060ADD2 /* JsonTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 087FDE1521E11D8F0060ADD2 /* JsonTests.swift */; };
 		08B77BDE21DBBB09000B9446 /* SettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08B77BDD21DBBB09000B9446 /* SettingsTableViewController.swift */; };
 		08B77BE021DBBE0D000B9446 /* SettingsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08B77BDF21DBBE0D000B9446 /* SettingsCell.swift */; };
 		08B77BE221DBC522000B9446 /* EditCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08B77BE121DBC522000B9446 /* EditCell.swift */; };
 		08B77BE421DBCB64000B9446 /* ButtonCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08B77BE321DBCB64000B9446 /* ButtonCell.swift */; };
-		08BF8EBF21E0C27E0032F749 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 08BF8EBE21E0C27E0032F749 /* README.md */; };
 		08C83AA421D7EA7800253D99 /* SwawshStringToSign.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08C83A9E21D7EA7800253D99 /* SwawshStringToSign.swift */; };
 		08C83AA521D7EA7800253D99 /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = 08C83A9F21D7EA7800253D99 /* LICENSE */; };
 		08C83AA621D7EA7800253D99 /* DateService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08C83AA021D7EA7800253D99 /* DateService.swift */; };
@@ -66,11 +66,11 @@
 		081C4F1721DA8D3400EAFBAD /* RegionDao.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegionDao.swift; sourceTree = "<group>"; };
 		0827B8F421D825CF00AF18F4 /* InstanceCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstanceCell.swift; sourceTree = "<group>"; };
 		084421B221D6433300EE25A4 /* ios-aws-console.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "ios-aws-console.xcdatamodel"; sourceTree = "<group>"; };
+		087FDE1521E11D8F0060ADD2 /* JsonTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JsonTests.swift; sourceTree = "<group>"; };
 		08B77BDD21DBBB09000B9446 /* SettingsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsTableViewController.swift; sourceTree = "<group>"; };
 		08B77BDF21DBBE0D000B9446 /* SettingsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsCell.swift; sourceTree = "<group>"; };
 		08B77BE121DBC522000B9446 /* EditCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditCell.swift; sourceTree = "<group>"; };
 		08B77BE321DBCB64000B9446 /* ButtonCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonCell.swift; sourceTree = "<group>"; };
-		08BF8EBE21E0C27E0032F749 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		08C83A9E21D7EA7800253D99 /* SwawshStringToSign.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwawshStringToSign.swift; sourceTree = "<group>"; };
 		08C83A9F21D7EA7800253D99 /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 		08C83AA021D7EA7800253D99 /* DateService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateService.swift; sourceTree = "<group>"; };
@@ -266,7 +266,6 @@
 		08D90C5821D630C30066CADB = {
 			isa = PBXGroup;
 			children = (
-				08BF8EBE21E0C27E0032F749 /* README.md */,
 				08D90C6321D630C30066CADB /* ios-aws-console */,
 				08D90C7D21D630C50066CADB /* ios-aws-consoleTests */,
 				08D90C6221D630C30066CADB /* Products */,
@@ -334,6 +333,7 @@
 			isa = PBXGroup;
 			children = (
 				08F3140F21DFF5DB00681A86 /* Xml2Json.swift */,
+				087FDE1521E11D8F0060ADD2 /* JsonTests.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -432,7 +432,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				08BF8EBF21E0C27E0032F749 /* README.md in Resources */,
 				08D90C7421D630C50066CADB /* LaunchScreen.storyboard in Resources */,
 				08D90C7121D630C50066CADB /* Assets.xcassets in Resources */,
 				08DB03F521DB72D200A4091A /* README.md in Resources */,
@@ -596,6 +595,7 @@
 				081C4F1021DA8BFB00EAFBAD /* Ec2DaoTests.swift in Sources */,
 				081C4F0F21DA8BFB00EAFBAD /* Ec2ServiceTests.swift in Sources */,
 				081C4F1121DA8BFB00EAFBAD /* CoreDataBaseTest.swift in Sources */,
+				087FDE1621E11D8F0060ADD2 /* JsonTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

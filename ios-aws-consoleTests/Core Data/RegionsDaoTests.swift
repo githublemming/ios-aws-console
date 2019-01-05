@@ -44,13 +44,19 @@ class RegionDaoTests: CoreDataBaseTest {
         XCTAssertEqual(results?.count, 1)
     }
 
-    func test_region_by_name() {
+    func test_region_by_name_pass() {
 
         regionDao.addRegion(name: "eu-west-1", active: true)
 
         let result = regionDao.getRegionByName(name: "eu-west-1")
 
         XCTAssertEqual(result?.name, "eu-west-1")
+    }
+
+    func test_region_by_name_fail() {
+
+        let result = regionDao.getRegionByName(name: "eu-west-1")
+        XCTAssertNil(result)
     }
 
     func test_active_region() {

@@ -8,20 +8,34 @@
 
 import UIKit
 
+import SwiftyJSON
+
 class DetailViewController: UIViewController {
 
     @IBOutlet var tableView: UITableView!
 
-    var ec2: EC2?
+    var instanceDetails = [[String: String]]()
+
+    let ec2Dao = Ec2Dao()
 
     override func viewDidLoad() {
         super.viewDidLoad()
     }
 
-    var detailItem: EC2? {
+    var instanceId: String? {
         didSet {
-            ec2 = detailItem
-            tableView.reloadData()
+
+            if let ec2 = ec2Dao.getInstanceByInstanceId(instanceId: instanceId!) {
+
+                let detail = ec2.detail
+                let json = JSON(detail!.data(using: .utf8, allowLossyConversion: false)!)
+                for (_, subJson):(String, JSON) in json {
+                    let detail = subJson.dictionaryObject
+                    instanceDetails.append(detail as! [String : String])
+                }
+
+                tableView.reloadData()
+            }
         }
     }
 }
@@ -33,22 +47,18 @@ extension DetailViewController: UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-
-        if ec2 != nil {
-            return 0
-        } else {
-            return 0
-        }
+        return instanceDetails.count
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 
         let cell = tableView.dequeueReusableCell(withIdentifier: "DetailCell", for: indexPath) as! DetailCell
 
-//        let detail = ec2!.instanceDetail(indexPath.row)
-//        cell.nameLabel?.text = detail.name
-//        cell.valueLabel?.text = detail.value
-
+        let detail = instanceDetails[indexPath.row]
+        for (property, value) in detail {
+            cell.nameLabel?.text = property
+            cell.valueLabel?.text = value
+        }
         return cell
     }
 }

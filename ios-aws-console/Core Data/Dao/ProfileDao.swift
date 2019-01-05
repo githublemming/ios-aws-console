@@ -67,7 +67,10 @@ class ProfileDao: BaseDao {
         profileRequest.predicate = NSPredicate(format: "name == %@", name)
 
         let result = try? persistentContainer.viewContext.fetch(profileRequest) as [Profile]
-        return result?[0]
+        if (result?.count)! > 0 {
+            return result?[0]
+        }
+        return nil
     }
 
     /**

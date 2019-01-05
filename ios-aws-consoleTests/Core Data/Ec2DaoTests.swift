@@ -24,9 +24,40 @@ class Ec2DaoTests: CoreDataBaseTest {
         super.tearDown()
     }
 
-//    func test_add_instance() {
-//
-//        let ec2 = ec2Dao.addInstance(instanceId: "i-123456789", region: "eu-west-1", detail: "data")
-//        XCTAssertNotNil( ec2 )
-//    }
+    func test_get_instances() {
+
+        ec2Dao.addInstance(instanceId: "i-123456789", region: "eu-west-1", details: "data")
+        let results = ec2Dao.getInstances()
+
+        XCTAssertEqual(results?.count, 1)
+    }
+
+    func test_get_instances_by_region() {
+
+        ec2Dao.addInstance(instanceId: "i-123456789", region: "eu-west-1", details: "data")
+        ec2Dao.addInstance(instanceId: "i-123456789", region: "eu-central-1", details: "data")
+        let results = ec2Dao.getInstancesByRegion(region: "eu-west-1")
+
+        XCTAssertEqual(results?.count, 1)
+    }
+
+    func test_add_instance() {
+
+        let ec2 = ec2Dao.addInstance(instanceId: "i-123456789", region: "eu-west-1", details: "data")
+        XCTAssertNotNil( ec2 )
+    }
+
+    func test_get_instance_by_instanceid_pass() {
+
+        ec2Dao.addInstance(instanceId: "i-123456789", region: "eu-west-1", details: "data")
+
+        let ec2 = ec2Dao.getInstanceByInstanceId(instanceId: "i-123456789")
+        XCTAssertEqual(ec2?.instanceId, "i-123456789")
+    }
+
+    func test_get_instance_by_instanceid_fail() {
+
+        let ec2 = ec2Dao.getInstanceByInstanceId(instanceId: "i-123456789")
+        XCTAssertNil( ec2 )
+    }
 }

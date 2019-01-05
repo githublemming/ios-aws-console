@@ -13,8 +13,9 @@ class MasterViewController: UIViewController {
 
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var regionPicker: UIPickerView!
-
     @IBOutlet weak var navBar: UINavigationItem!
+
+    var detailViewController: DetailViewController? = nil
 
     var regions: [String] = [ "ap-south-1", "eu-west-3", "eu-north-1", "eu-west-2", "eu-west-1",
         "ap-northeast-2", "ap-northeast-1", "sa-east-1", "ca-central-1", "ap-southeast-1",
@@ -36,13 +37,17 @@ class MasterViewController: UIViewController {
 
         super.viewDidLoad()
 
+        doneWithPickerView()
+
+        if let split = splitViewController {
+            let controllers = split.viewControllers
+            detailViewController = (controllers[controllers.count-1] as! UINavigationController).topViewController as? DetailViewController
+        }
+
         ec2Service = Ec2Service(ec2Dao: ec2Dao, regionDao: regionDao, profileDao: profileDao)
 
         navBar.title = region
-
         regions.sort()
-
-        doneWithPickerView()
 
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(refreshInstances),
@@ -119,9 +124,12 @@ extension MasterViewController: UICollectionViewDataSource {
 
 extension MasterViewController: UICollectionViewDelegate {
 
-    func collectionView(_ collectionView: UICollectionView, shouldSelectItemAt indexPath: IndexPath) -> Bool {
-        print("Something tapped")
-        return false
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier,
+                                                      for: indexPath) as! InstanceCell
+
+        detailViewController!.instanceId = cell.instanceId.text
     }
 }
 
