@@ -1,3 +1,4 @@
+---
 exclude_paths:
-  - 'ios-aws-console/3rdParty/**
-'
+  - '3rdParty/**'
+  - 'ios-aws-console/3rdParty/**'
