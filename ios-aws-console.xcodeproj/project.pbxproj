@@ -18,6 +18,7 @@
 		08B77BE021DBBE0D000B9446 /* SettingsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08B77BDF21DBBE0D000B9446 /* SettingsCell.swift */; };
 		08B77BE221DBC522000B9446 /* EditCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08B77BE121DBC522000B9446 /* EditCell.swift */; };
 		08B77BE421DBCB64000B9446 /* ButtonCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08B77BE321DBCB64000B9446 /* ButtonCell.swift */; };
+		08BF8EBF21E0C27E0032F749 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 08BF8EBE21E0C27E0032F749 /* README.md */; };
 		08C83AA421D7EA7800253D99 /* SwawshStringToSign.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08C83A9E21D7EA7800253D99 /* SwawshStringToSign.swift */; };
 		08C83AA521D7EA7800253D99 /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = 08C83A9F21D7EA7800253D99 /* LICENSE */; };
 		08C83AA621D7EA7800253D99 /* DateService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08C83AA021D7EA7800253D99 /* DateService.swift */; };
@@ -69,6 +70,7 @@
 		08B77BDF21DBBE0D000B9446 /* SettingsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsCell.swift; sourceTree = "<group>"; };
 		08B77BE121DBC522000B9446 /* EditCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditCell.swift; sourceTree = "<group>"; };
 		08B77BE321DBCB64000B9446 /* ButtonCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonCell.swift; sourceTree = "<group>"; };
+		08BF8EBE21E0C27E0032F749 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		08C83A9E21D7EA7800253D99 /* SwawshStringToSign.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwawshStringToSign.swift; sourceTree = "<group>"; };
 		08C83A9F21D7EA7800253D99 /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 		08C83AA021D7EA7800253D99 /* DateService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateService.swift; sourceTree = "<group>"; };
@@ -264,6 +266,7 @@
 		08D90C5821D630C30066CADB = {
 			isa = PBXGroup;
 			children = (
+				08BF8EBE21E0C27E0032F749 /* README.md */,
 				08D90C6321D630C30066CADB /* ios-aws-console */,
 				08D90C7D21D630C50066CADB /* ios-aws-consoleTests */,
 				08D90C6221D630C30066CADB /* Products */,
@@ -429,6 +432,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				08BF8EBF21E0C27E0032F749 /* README.md in Resources */,
 				08D90C7421D630C50066CADB /* LaunchScreen.storyboard in Resources */,
 				08D90C7121D630C50066CADB /* Assets.xcassets in Resources */,
 				08DB03F521DB72D200A4091A /* README.md in Resources */,

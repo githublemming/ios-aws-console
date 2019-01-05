@@ -8,8 +8,19 @@
 
 import CoreData
 
+/// DAO class that handles the Region object
 class RegionDao: BaseDao {
 
+    /**
+     Created a new Region object in Core Data
+
+     - Parameters:
+       - name: name of the region
+       - active: is the region active
+
+     - Returns:
+       The created Region or nil of the request was not sucessful
+    */
     @discardableResult func addRegion(name: String, active: Bool) -> Region? {
 
         guard let region = NSEntityDescription.insertNewObject(
@@ -23,6 +34,12 @@ class RegionDao: BaseDao {
         return region
     }
 
+    /**
+     Returns all Regions
+
+     - Returns:
+       An array of Region objects
+    */
     func getRegions() -> [Region]? {
 
         let regionRequest = NSFetchRequest<Region>(entityName: "Region")
@@ -31,6 +48,15 @@ class RegionDao: BaseDao {
         return regions
     }
 
+    /**
+     Returns a Region by name
+
+     - Parameters:
+       - name: name of the Region to return
+
+     - Returns:
+       The required Region or nil if it could not be found
+    */
     func getRegionByName(name: String) -> Region? {
 
         let regionRequest = NSFetchRequest<Region>(entityName: "Region")
@@ -45,8 +71,14 @@ class RegionDao: BaseDao {
         }
     }
 
+    /**
+     Returns the active Region
+
+     - Returns:
+       The active Region or nil if no active region has been defined
+    */
     func getActiveRegion() -> Region? {
-        
+
         let regionRequest = NSFetchRequest<Region>(entityName: "Region")
         regionRequest.predicate = NSPredicate(format: "active == %@", NSNumber(booleanLiteral: true))
 
@@ -54,6 +86,12 @@ class RegionDao: BaseDao {
         return result?[0]
     }
 
+    /**
+     Sets the Region as active
+
+     - Parameters:
+       - region: Region to set as active
+    */
     func setActiveRegion(region: Region) {
 
         if let activeRegion = getActiveRegion() {

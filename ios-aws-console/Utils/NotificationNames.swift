@@ -8,8 +8,12 @@
 
 import UIKit
 
+/// Additional Notification names
 extension Notification.Name {
 
+    /// Used when instances are updated
     static let instancesUpdated = Notification.Name("instancesUpdated")
+
+    /// Used when regions are updated
     static let regionsUpdated = Notification.Name("regionsUpdated")
 }

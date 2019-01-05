@@ -8,8 +8,22 @@
 
 import CoreData
 
+
+/// DAO class that deals with Profile models in Core Data
 class ProfileDao: BaseDao {
 
+    /**
+     Adds a new Profile into Core Data
+
+     - Parameters:
+       - name: name of the profile
+       - accessId: Access Key Id
+       - secret: Access Key Secret
+       - active: Is this the activce profile?
+
+     - Returns:
+       Profile object if successful otherwise nil
+    */
     @discardableResult func addProfile(name: String, accessId: String, secret: String, active: Bool) -> Profile? {
 
         guard let profile = NSEntityDescription.insertNewObject(
@@ -25,6 +39,12 @@ class ProfileDao: BaseDao {
         return profile
     }
 
+    /**
+     Returns an array of all Profiles
+
+     - Returns:
+       Array of Profile objects
+    */
     func getProfiles() -> [Profile]? {
 
         let profileRequest = NSFetchRequest<Profile>(entityName: "Profile")
@@ -33,6 +53,15 @@ class ProfileDao: BaseDao {
         return profiles
     }
 
+    /**
+     Returns a Profile with a specific name
+
+     - Parameters:
+      - name : The name of the profile to return
+
+     - Returns:
+       The required profile or nil if not found
+    */
     func getProfileByName(name: String) -> Profile? {
 
         let profileRequest = NSFetchRequest<Profile>(entityName: "Profile")
@@ -42,6 +71,12 @@ class ProfileDao: BaseDao {
         return result?[0]
     }
 
+    /**
+     Returns the active Profile
+
+     - Returns:
+       Returns a Profile object or nil if no profiles are defined as active
+    */
     func getActiveProfile() -> Profile? {
 
         let profileRequest = NSFetchRequest<Profile>(entityName: "Profile")
@@ -54,6 +89,12 @@ class ProfileDao: BaseDao {
         return nil
     }
 
+    /**
+     Sets a Profile as active
+
+     - Parameters:
+       - profile: The Profile to set as active
+    */
     func setActiveProfile(profile: Profile) {
 
         if let activeProfile = getActiveProfile() {

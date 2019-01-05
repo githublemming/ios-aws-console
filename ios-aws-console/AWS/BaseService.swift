@@ -8,6 +8,7 @@
 
 import Alamofire
 
+/// Abstract class that all services should implement
 class BaseService {
 
     let swawsh = SwawshCredential.sharedInstance
@@ -16,12 +17,29 @@ class BaseService {
     let regionDao: RegionDao!
     let profileDao: ProfileDao!
 
+    /**
+     Default constructor
+
+     - Parameters:
+       - ec2_dao: an instance of Ec2Dao
+       - region_dao: an instance of RegionDao
+       - profile_dao: an instance of ProfileDao
+    */
     init(ec2_dao: Ec2Dao, region_dao: RegionDao, profile_dao: ProfileDao) {
         self.ec2Dao = ec2_dao;
         self.regionDao = region_dao
         self.profileDao = profile_dao
     }
 
+    /**
+     Makes an API call to AWS
+
+     - Parameters:
+       - awsService: The AWS Service to send the request to e.g. EC2
+       - region: The region the request should target
+       - queryParams: The actual request e.g. DescribeInstances
+       - completion: A completion handler to asynchronoulst handle any response
+    */
     func sendRequest(awsService: AwsService,
                      region: String,
                      queryParams: String,
