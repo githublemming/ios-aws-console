@@ -10,6 +10,7 @@ import UIKit
 
 import SWXMLHash
 
+/// Provides EC2 service implementation
 class Ec2Service: BaseService, AwsService {
 
     override init(ec2_dao: Ec2Dao, region_dao: RegionDao, profile_dao: ProfileDao) {
@@ -28,6 +29,12 @@ class Ec2Service: BaseService, AwsService {
         return "ec2.\(region).amazonaws.com"
     }
 
+    /**
+     Makes a 'DescribeInstances' request to AWS
+
+     - Parameters:
+       - region: The AWS region to make the request against
+    */
     func describeInstances(region: String) {
 
         sendRequest(awsService: self,
@@ -35,6 +42,12 @@ class Ec2Service: BaseService, AwsService {
                     queryParams: "DescribeInstances",
                     completion: describeInstancesCompletionHandler)
     }
+    /**
+     Handles the response to the DescribeInstances request
+
+     - Parameters:
+       - instances: Data object with instances information
+    */
     func describeInstancesCompletionHandler(instances: Data) {
 
         let xml = SWXMLHash.parse(instances)
@@ -56,6 +69,9 @@ class Ec2Service: BaseService, AwsService {
         NotificationCenter.default.post(name: .instancesUpdated, object: self, userInfo: nil)
     }
 
+    /**
+     Makes a 'DescribeRegions' request to AWS
+     */
     func describeRegions() {
 
         sendRequest(awsService: self,
@@ -63,6 +79,12 @@ class Ec2Service: BaseService, AwsService {
                     queryParams: "DescribeRegions",
                     completion: describeRegionsCompletionHandler)
     }
+    /**
+     Handles the response to the DescribeRegions request
+
+     - Parameters:
+       - instances: Data object with regions information
+     */
     func describeRegionsCompletionHandler(regions: Data) {
 
         let xml = SWXMLHash.parse(regions)

@@ -153,14 +153,14 @@ class Ec2XmlToJson: XCTestCase {
         details = [[String: String]]()
     }
 
-    func test_getJsonString() {
+    func test_getJson() {
 
         let xml = SWXMLHash.parse(describeInstancesResponse)
         let instancesXml = xml["DescribeInstancesResponse"]["reservationSet"]["item"]["instancesSet"]["item"]
 
-        let detail = Ec2XmltoJson().getJsonString(xml: instancesXml)
+        let detail = Ec2XmltoJson().getJson(xml: instancesXml)
 
-        print(detail)
+        XCTAssertEqual(detail.count, 22)
     }
 
 }

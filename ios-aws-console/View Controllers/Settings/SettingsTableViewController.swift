@@ -80,6 +80,7 @@ class SettingsTableViewController: UITableViewController {
                 (cell as! EditCell).cellTextField.addTarget(self, action: #selector(SettingsTableViewController.accessChanged), for: .allEvents)
             case 2:
                 (cell as! EditCell).cellLabel.text = "Secret"
+                (cell as! EditCell).cellTextField.isSecureTextEntry = true
                 (cell as! EditCell).cellTextField.addTarget(self, action: #selector(SettingsTableViewController.secretChanged), for: .allEvents)
             case 3:
                 (cell as! EditCell).cellLabel.text = "Active"
