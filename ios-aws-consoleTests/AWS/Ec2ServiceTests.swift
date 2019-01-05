@@ -172,7 +172,7 @@ class Ec2ServiceTests: CoreDataBaseTest {
         regionDao = RegionDao(container: mockPersistantContainer)
         profileDao = ProfileDao(container: mockPersistantContainer)
 
-        ec2Service = Ec2Service(ec2_dao: ec2Dao, region_dao: regionDao, profile_dao: profileDao)
+        ec2Service = Ec2Service(ec2Dao: ec2Dao, regionDao: regionDao, profileDao: profileDao)
     }
 
     override func tearDown() {
@@ -180,6 +180,18 @@ class Ec2ServiceTests: CoreDataBaseTest {
         flushData(entityName: "Region")
         
         super.tearDown()
+    }
+
+    func test_service() {
+        XCTAssertEqual(ec2Service.service(), "ec2")
+    }
+
+    func test_endpoint() {
+        XCTAssertEqual(ec2Service.endpoint(), "ec2.amazonaws.com")
+    }
+
+    func test_endpoint_with_region() {
+        XCTAssertEqual(ec2Service.endpointWithRegion(region: "eu-west-1"), "ec2.eu-west-1.amazonaws.com")
     }
 
     func test_describe_instances_completion_handler() {

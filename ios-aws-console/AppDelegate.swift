@@ -57,7 +57,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDele
         guard let secondaryAsNavController = secondaryViewController as? UINavigationController else { return false }
         guard let topAsDetailController = secondaryAsNavController.topViewController as? DetailViewController else { return false }
 
-        if topAsDetailController.detailItem == nil {
+        if topAsDetailController.instanceId == nil {
             return true
         }
         return false
