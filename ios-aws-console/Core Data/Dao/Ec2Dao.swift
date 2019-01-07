@@ -22,12 +22,13 @@ class Ec2Dao: BaseDao {
      - Returns:
        An EC2 object or nil of the creation failed
     */
-    @discardableResult func addInstance(instanceId: String, region: String, details: String) -> EC2? {
+    @discardableResult func addInstance(instanceId: String, region: String, instanceState: String, details: String) -> EC2? {
 
         guard let ec2 = NSEntityDescription.insertNewObject(
             forEntityName: "EC2", into: persistentContainer.viewContext) as? EC2 else { return nil }
 
         ec2.instanceId = instanceId
+        ec2.instanceState = instanceState
         ec2.region = region
         ec2.detail = details
 
@@ -44,9 +45,10 @@ class Ec2Dao: BaseDao {
        - region; Region instance was located in
        - details: JSON string containing all information about the instance
     */
-    func updateInstance(instanceId: String, region: String, details: String) {
+    func updateInstance(instanceId: String, region: String, instanceState: String, details: String) {
 
         let ec2 = getInstanceByInstanceId(instanceId: instanceId)
+        ec2?.instanceState = instanceState
         ec2?.region = region
         ec2?.detail = details
 
