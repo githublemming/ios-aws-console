@@ -28,7 +28,6 @@ class MasterViewController: UIViewController {
     var ec2Service: Ec2Service!
 
     fileprivate let reuseIdentifier = "Cell"
-    fileprivate let sectionInsets = UIEdgeInsets(top: 20.0, left: 20.0, bottom: 20.0, right: 20.0)
 
     var instances = [EC2]()
     var region = "eu-west-1"
@@ -51,11 +50,13 @@ class MasterViewController: UIViewController {
         navBar.title = region
         regions.sort()
 
+        let indexArray = regions.index(of: region)!
+        regionPicker.selectRow(indexArray, inComponent: 0, animated: false)
+
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(refreshInstances),
                                                name: .instancesUpdated,
                                                object: nil)
-//        refreshInstances()
     }
 
     @IBAction func changRegion(_ sender: Any) {
@@ -95,11 +96,7 @@ class MasterViewController: UIViewController {
 
         instances = ec2Dao.getInstancesByRegion(region: region)!
 
-        if instances.count > 0 {
-            collectionView.reloadData()
-        } else {
-            // alert that there are no known instances and that the user should request a refresh
-        }
+        collectionView.reloadData()
     }
 }
 
@@ -118,8 +115,10 @@ extension MasterViewController: UICollectionViewDataSource {
 
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier,
                                                       for: indexPath) as! InstanceCell
-        cell.ec2 = instances[indexPath.row]
-        cell.configure()
+
+        let ec2 = instances[indexPath.row]
+        cell.instanceId.text = ec2.instanceId!
+        cell.configure(instanceState: ec2.instanceState!)
         return cell
     }
 }
@@ -128,10 +127,9 @@ extension MasterViewController: UICollectionViewDelegate {
 
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
 
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier,
-                                                      for: indexPath) as! InstanceCell
+        let instanceId = instances[indexPath.row].instanceId!
 
-        detailViewController!.instanceId = cell.instanceId.text
+        detailViewController!.instanceId = instanceId
     }
 }
 

@@ -10,16 +10,12 @@ import UIKit
 
 class InstanceCell: UICollectionViewCell {
 
-    var ec2: EC2!
-
     @IBOutlet weak var stateView: UIView!
     @IBOutlet weak var instanceId: UILabel!
 
-    func configure() {
+    func configure(instanceState: String) {
 
-        instanceId.text = ec2.instanceId
-
-        switch ec2.instanceState {
+        switch instanceState {
         case "pending", "shutting-down", "stopping":
             stateView.backgroundColor = UIColor.yellow
         case "running":

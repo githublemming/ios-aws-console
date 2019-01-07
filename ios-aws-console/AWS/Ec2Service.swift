@@ -56,20 +56,23 @@ class Ec2Service: BaseService, AwsService {
         for item in instancesXml.children {
 
             let instanceId = item["instanceId"].element!.text
-            let availabilitZone = item["placement"]["availabilityZone"].element!.text
+            let availabilityZone = item["placement"]["availabilityZone"].element!.text
+            let instanceState = item["instanceState"]["name"].element!.text
             let detail = Ec2XmltoJson().getJsonString(xml: item)
 
             if ec2Dao.getInstanceByInstanceId(instanceId: instanceId) != nil {
 
                 ec2Dao.updateInstance(
                     instanceId: instanceId,
-                    region: String(availabilitZone.dropLast()),
+                    region: String(availabilityZone.dropLast()),
+                    instanceState: instanceState,
                     details: detail)
             } else {
                 
                 ec2Dao.addInstance(
                     instanceId: instanceId,
-                    region: String(availabilitZone.dropLast()),
+                    region: String(availabilityZone.dropLast()),
+                    instanceState: instanceState,
                     details: detail)
             }
         }
